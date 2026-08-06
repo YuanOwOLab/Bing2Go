@@ -11,6 +11,8 @@
         "build": "nuxt build",
         "start": "nuxt start",
         "dev": "nuxt dev",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
@@ -48,6 +50,7 @@
         "@vue/test-utils": "^2.4.6",
         "dotenv": "^17.2.3",
         "happy-dom": "^20.0.11",
+        "prettier": "^3.9.6",
         "tsx": "^4.20.6",
         "typescript": "6.0.3",
         "vitest": "^4.0.15"
