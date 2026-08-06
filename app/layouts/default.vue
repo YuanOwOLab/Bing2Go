@@ -1,7 +1,7 @@
 <template>
     <AdLayout>
         <v-app>
-            <v-navigation-drawer v-model="drawer" temporary location="left" v-if="mobile">
+            <v-navigation-drawer v-if="mobile" v-model="drawer" temporary location="left">
                 <v-list>
                     <v-list-item
                         v-for="link in links"
@@ -21,18 +21,14 @@
                                 :content="notificationStore.notificationCount"
                                 inline
                                 class="ml-1 notification-badge"
-                            ></v-badge>
+                            />
                         </v-list-item-title>
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
 
             <v-app-bar app color="white" flat border>
-                <v-app-bar-nav-icon
-                    variant="text"
-                    @click.stop="drawer = !drawer"
-                    class="d-md-none"
-                ></v-app-bar-nav-icon>
+                <v-app-bar-nav-icon variant="text" class="d-md-none" @click.stop="drawer = !drawer" />
 
                 <v-btn
                     to="/introduction"
@@ -73,12 +69,12 @@
                                 :content="notificationStore.notificationCount"
                                 inline
                                 class="ml-1 notification-badge"
-                            ></v-badge>
+                            />
                         </v-btn>
                     </v-btn-toggle>
                 </div>
 
-                <v-spacer></v-spacer>
+                <v-spacer />
 
                 <v-tooltip v-if="role === 'customer'" text="購物冰箱" location="bottom">
                     <template #activator="{ props: act }">
@@ -104,7 +100,7 @@
                 </v-tooltip>
                 <v-tooltip v-else text="登出" location="bottom">
                     <template #activator="{ props }">
-                        <v-btn icon v-bind="props" class="ml-2 mr-2 mr-md-8" @click="userStore.logout()" to="/login">
+                        <v-btn icon v-bind="props" class="ml-2 mr-2 mr-md-8" to="/login" @click="userStore.logout()">
                             <v-icon>mdi-logout</v-icon>
                         </v-btn>
                     </template>

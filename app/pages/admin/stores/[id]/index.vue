@@ -1,7 +1,7 @@
 <template>
     <v-container class="py-8">
         <div v-if="pending" class="text-center py-16">
-            <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+            <v-progress-circular indeterminate color="primary" size="64" />
             <p class="mt-4 text-h6">正在載入餐廳資料...</p>
         </div>
 
@@ -16,7 +16,7 @@
                             <v-toolbar-title class="text-h5 font-weight-bold text-white"
                                 >編輯餐廳：{{ editableStore.name }}</v-toolbar-title
                             >
-                            <v-spacer></v-spacer>
+                            <v-spacer />
                             <v-btn
                                 variant="text"
                                 class="text-white"
@@ -39,7 +39,7 @@
                                         variant="outlined"
                                         density="comfortable"
                                         placeholder="例：海風食堂"
-                                    ></v-text-field>
+                                    />
 
                                     <p class="text-subtitle-2 mb-1 mt-4 label-required">介紹</p>
                                     <v-textarea
@@ -47,7 +47,7 @@
                                         variant="outlined"
                                         rows="3"
                                         placeholder="簡述餐廳特色與招牌餐點..."
-                                    ></v-textarea>
+                                    />
 
                                     <p class="text-subtitle-2 mb-1 mt-4 label-required">地址＊</p>
                                     <v-text-field
@@ -58,7 +58,7 @@
                                         placeholder="例：基隆市中正區 ×× 路 ×× 號"
                                         hint="請輸入包含縣市、鄉鎮市區與詳細門牌"
                                         persistent-hint
-                                    ></v-text-field>
+                                    />
 
                                     <p class="text-subtitle-2 mb-1 mt-4 label-required">電話＊</p>
                                     <v-text-field
@@ -69,7 +69,7 @@
                                         placeholder="0xxxxxxxxx"
                                         hint="格式：0 開頭共 10 碼"
                                         persistent-hint
-                                    ></v-text-field>
+                                    />
                                 </v-col>
 
                                 <v-col cols="12" md="4">
@@ -121,7 +121,7 @@
                                 </v-col>
                             </v-row>
 
-                            <v-divider class="my-10"></v-divider>
+                            <v-divider class="my-10" />
 
                             <!-- 菜單管理區 -->
                             <div class="d-flex align-center justify-space-between mb-4">
@@ -216,7 +216,7 @@
                                                                 variant="outlined"
                                                                 density="comfortable"
                                                                 placeholder="餐點名稱"
-                                                            ></v-text-field>
+                                                            />
                                                         </v-col>
                                                         <v-col cols="12" md="6">
                                                             <p class="text-subtitle-2 mb-1 label-required">價格</p>
@@ -228,7 +228,7 @@
                                                                 density="comfortable"
                                                                 suffix="元"
                                                                 placeholder="0"
-                                                            ></v-text-field>
+                                                            />
                                                         </v-col>
                                                     </v-row>
                                                     <p class="text-subtitle-2 mb-1 mt-2 label-required">介紹</p>
@@ -238,7 +238,7 @@
                                                         rows="3"
                                                         density="comfortable"
                                                         placeholder="此餐點的特色與口味說明"
-                                                    ></v-textarea>
+                                                    />
                                                 </v-col>
                                             </v-row>
                                             <div class="d-flex justify-end mt-2">

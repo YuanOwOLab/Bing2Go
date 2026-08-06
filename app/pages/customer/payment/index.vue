@@ -16,7 +16,7 @@
                                     :rules="addressRules"
                                     validate-on="blur"
                                     @blur="updateDetailsInStore"
-                                ></v-text-field>
+                                />
                             </div>
                             <div class="mb-4">
                                 <p class="text-caption text-medium-emphasis">聯絡人暱稱</p>
@@ -26,7 +26,7 @@
                                     :rules="[(value: string) => !!value || '聯絡人暱稱為必填。']"
                                     validate-on="blur"
                                     @blur="updateDetailsInStore"
-                                ></v-text-field>
+                                />
                             </div>
                             <div class="mb-4">
                                 <p class="text-caption text-medium-emphasis">聯絡電話</p>
@@ -36,15 +36,11 @@
                                     :rules="phoneRules"
                                     validate-on="blur"
                                     @blur="updateDetailsInStore"
-                                ></v-text-field>
+                                />
                             </div>
                             <div class="mb-4">
                                 <p class="text-caption text-medium-emphasis">備註</p>
-                                <v-text-field
-                                    v-model="localNote"
-                                    class="mt-1"
-                                    @blur="updateDetailsInStore"
-                                ></v-text-field>
+                                <v-text-field v-model="localNote" class="mt-1" @blur="updateDetailsInStore" />
                             </div>
                         </v-form>
                     </v-card-text>
@@ -52,12 +48,7 @@
                 <v-card flat border>
                     <v-card-title class="text-h6">付款方式</v-card-title>
                     <v-card-text>
-                        <v-select
-                            v-model="paymentMethod"
-                            :items="paymentOptions"
-                            variant="outlined"
-                            hide-details
-                        ></v-select>
+                        <v-select v-model="paymentMethod" :items="paymentOptions" variant="outlined" hide-details />
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -68,7 +59,7 @@
                     <v-card-text>
                         <v-list lines="two" bg-color="transparent">
                             <v-list-item v-for="item in items" :key="item._id" class="mb-2">
-                                <template v-slot:prepend>
+                                <template #prepend>
                                     <v-img :src="item.image" width="56" height="56" class="rounded me-4" cover>
                                         <template #error>
                                             <v-sheet
@@ -84,13 +75,13 @@
                                 <v-list-item-title class="font-weight-medium"> {{ item.name }} </v-list-item-title>
                                 <v-list-item-subtitle>{{ item.restaurantName }} </v-list-item-subtitle>
 
-                                <template v-slot:append>
+                                <template #append>
                                     <span class="text-body-1 ms-2"> ${{ item.price }} x {{ item.quantity }} </span>
                                 </template>
                             </v-list-item>
                         </v-list>
 
-                        <v-divider class="my-4"></v-divider>
+                        <v-divider class="my-4" />
 
                         <div class="d-flex justify-space-between mt-4">
                             <p class="text-body-1 text-medium-emphasis">餐點小計</p>
@@ -101,7 +92,7 @@
                             <p class="text-body-1 font-weight-medium">$ {{ deliveryFee }}</p>
                         </div>
 
-                        <v-divider class="my-4"></v-divider>
+                        <v-divider class="my-4" />
 
                         <div class="d-flex justify-space-between">
                             <p class="text-h6 font-weight-bold">訂單總金額</p>

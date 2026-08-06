@@ -12,7 +12,7 @@
                     hide-details
                     clearable
                     append-inner-icon="mdi-magnify"
-                ></v-text-field>
+                />
             </v-col>
 
             <v-col cols="12" sm="6" md="3">
@@ -25,12 +25,12 @@
                     variant="outlined"
                     density="compact"
                     hide-details
-                ></v-select>
+                />
             </v-col>
         </v-row>
         <v-row v-if="pending" class="mt-10">
             <v-col cols="12" class="text-center">
-                <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+                <v-progress-circular indeterminate color="primary" size="64" />
                 <p class="mt-4 text-medium-emphasis">正在載入可接訂單...</p>
             </v-col>
         </v-row>
@@ -46,13 +46,13 @@
             <v-col v-if="allOrders.length === 0" cols="12">
                 <p class="text-center text-medium-emphasis mt-10">目前沒有符合條件的訂單</p>
             </v-col>
-            <v-col v-else v-for="order in allOrders" :key="order.id" cols="12" md="10" lg="8" class="mx-auto">
+            <v-col v-for="order in allOrders" v-else :key="order.id" cols="12" md="10" lg="8" class="mx-auto">
                 <CustomerOrderCard :order="order" />
             </v-col>
         </v-row>
         <v-row v-if="loadingMore" class="mt-4">
             <v-col cols="12" class="text-center">
-                <v-progress-circular indeterminate color="primary" size="32"></v-progress-circular>
+                <v-progress-circular indeterminate color="primary" size="32" />
                 <p class="mt-2 text-medium-emphasis">載入更多訂單...</p>
             </v-col>
         </v-row>

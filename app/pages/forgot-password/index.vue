@@ -1,5 +1,5 @@
 <template>
-    <button class="back-button" @click="goBack" aria-label="回上一頁">← 返回</button>
+    <button class="back-button" aria-label="回上一頁" @click="goBack">← 返回</button>
 
     <main class="container">
         <h1 class="big-text">我也沒辦法</h1>

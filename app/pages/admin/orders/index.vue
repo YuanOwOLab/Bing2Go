@@ -19,7 +19,7 @@
                         <v-row dense align="center">
                             <v-col cols="12" sm="6" md="3">
                                 <v-menu v-model="menuFrom" :close-on-content-click="false" location="bottom start">
-                                    <template v-slot:activator="{ props }">
+                                    <template #activator="{ props }">
                                         <v-text-field
                                             v-bind="props"
                                             v-model="filters.from"
@@ -32,7 +32,7 @@
                                             clearable
                                             bg-color="white"
                                             @click:clear="clearDate('from')"
-                                        ></v-text-field>
+                                        />
                                     </template>
                                     <v-card min-width="300">
                                         <v-date-picker
@@ -41,14 +41,14 @@
                                             show-adjacent-months
                                             hide-header
                                             @update:model-value="updateDate('from', $event)"
-                                        ></v-date-picker>
+                                        />
                                     </v-card>
                                 </v-menu>
                             </v-col>
 
                             <v-col cols="12" sm="6" md="3">
                                 <v-menu v-model="menuTo" :close-on-content-click="false" location="bottom start">
-                                    <template v-slot:activator="{ props }">
+                                    <template #activator="{ props }">
                                         <v-text-field
                                             v-bind="props"
                                             v-model="filters.to"
@@ -61,7 +61,7 @@
                                             clearable
                                             bg-color="white"
                                             @click:clear="clearDate('to')"
-                                        ></v-text-field>
+                                        />
                                     </template>
                                     <v-card min-width="300">
                                         <v-date-picker
@@ -70,7 +70,7 @@
                                             show-adjacent-months
                                             hide-header
                                             @update:model-value="updateDate('to', $event)"
-                                        ></v-date-picker>
+                                        />
                                     </v-card>
                                 </v-menu>
                             </v-col>
@@ -88,7 +88,7 @@
                                     hide-details
                                     bg-color="white"
                                     @update:model-value="fetchOrders"
-                                ></v-select>
+                                />
                             </v-col>
 
                             <v-col cols="12" sm="6" md="3" class="d-flex align-center justify-end pl-4">
@@ -97,9 +97,9 @@
                                     variant="tonal"
                                     color="primary"
                                     class="mr-3"
-                                    @click="fetchOrders"
                                     :loading="pending"
-                                ></v-btn>
+                                    @click="fetchOrders"
+                                />
                                 <div class="text-h6 font-weight-bold text-grey-darken-2">共 {{ orders.length }} 筆</div>
                             </v-col>
                         </v-row>
@@ -125,12 +125,7 @@
 
                 <v-row v-if="pending">
                     <v-col v-for="n in 3" :key="n" cols="12">
-                        <v-skeleton-loader
-                            class="rounded-lg mb-3 border"
-                            type="article"
-                            elevation="1"
-                            height="200"
-                        ></v-skeleton-loader>
+                        <v-skeleton-loader class="rounded-lg mb-3 border" type="article" elevation="1" height="200" />
                     </v-col>
                 </v-row>
 
@@ -157,7 +152,7 @@
                             <p class="text-subtitle-1 text-grey">試著調整日期範圍或篩選條件</p>
                         </div>
 
-                        <AdminOrderCard v-else v-for="order in orders" :key="order.id" :order="order" />
+                        <AdminOrderCard v-for="order in orders" v-else :key="order.id" :order="order" />
                     </v-window-item>
                 </v-window>
             </v-col>

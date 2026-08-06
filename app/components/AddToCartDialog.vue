@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialog" :max-width="$vuetify.display.xs ? '95%' : '500px'">
         <v-card v-if="item" rounded="lg">
-            <v-img :src="item.image" :height="$vuetify.display.xs ? '250px' : '200px'" cover ref="itemImg"></v-img>
+            <v-img ref="itemImg" :src="item.image" :height="$vuetify.display.xs ? '250px' : '200px'" cover />
 
             <v-card-title class="text-h5 font-weight-bold pt-4">
                 {{ item.name }}
@@ -11,9 +11,9 @@
                 <p class="mb-4">{{ item.info }}</p>
                 <p class="text-h6 font-weight-bold mb-4">${{ item.price }}</p>
                 <div class="d-flex align-center justify-center">
-                    <v-btn icon="mdi-minus" variant="tonal" color="grey" @click="decreaseQuantity"></v-btn>
+                    <v-btn icon="mdi-minus" variant="tonal" color="grey" @click="decreaseQuantity" />
                     <span class="mx-6 text-h5 font-weight-bold">{{ quantity }}</span>
-                    <v-btn icon="mdi-plus" variant="tonal" color="grey" @click="increaseQuantity"></v-btn>
+                    <v-btn icon="mdi-plus" variant="tonal" color="grey" @click="increaseQuantity" />
                 </div>
 
                 <v-alert
@@ -31,18 +31,18 @@
                 <v-btn
                     :size="$vuetify.display.xs ? 'default' : 'large'"
                     variant="tonal"
-                    @click="closeDialog"
                     class="flex-grow-1 flex-sm-grow-0"
+                    @click="closeDialog"
                 >
                     再想想
                 </v-btn>
-                <v-spacer class="d-none d-sm-block"></v-spacer>
+                <v-spacer class="d-none d-sm-block" />
                 <v-btn
                     color="primary"
                     :size="$vuetify.display.xs ? 'default' : 'large'"
                     variant="flat"
-                    @click="confirmAddToCart"
                     class="flex-grow-1 flex-sm-grow-0 ml-2 ml-sm-0"
+                    @click="confirmAddToCart"
                 >
                     {{ isInCart ? "再來一份" : "馬上冰！" }}
                 </v-btn>

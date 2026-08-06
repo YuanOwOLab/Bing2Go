@@ -1,7 +1,7 @@
 <template>
     <!-- 一定要用 ClientOnly，避免 SSR 時碰到 window / document -->
     <ClientOnly>
-        <div id="simple-map" class="map-container"></div>
+        <div id="simple-map" class="map-container" />
     </ClientOnly>
 </template>
 

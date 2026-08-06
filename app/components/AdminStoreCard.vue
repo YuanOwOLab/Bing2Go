@@ -41,7 +41,7 @@
                     class="font-weight-bold px-2"
                 >
                     {{ rating.toFixed(1) }}
-                    <v-icon start size="x-small" icon="mdi-star" class="ml-1"></v-icon>
+                    <v-icon start size="x-small" icon="mdi-star" class="ml-1" />
                 </v-chip>
                 <v-chip v-else size="x-small" variant="tonal" color="grey">無評價</v-chip>
             </div>
@@ -80,7 +80,7 @@
                 size="small"
                 rounded="circle"
                 @click.stop="navigateToReviews"
-            ></v-btn>
+            />
 
             <v-btn
                 variant="tonal"
@@ -98,7 +98,7 @@
                 class="d-flex d-sm-none"
                 rounded="circle"
                 size="small"
-            ></v-btn>
+            />
         </div>
     </v-card>
 </template>

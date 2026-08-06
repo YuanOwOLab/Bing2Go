@@ -1,6 +1,6 @@
 <template>
     <div class="black-screen" @click="goBack">
-        <div class="scrolling-text" ref="scrollingText">
+        <div ref="scrollingText" class="scrolling-text">
             <p class="intro-title">感謝您使用本系統</p>
             <p>我們致力於打造一個</p>
             <p>專屬於海大學生的餐飲外送平台</p>
@@ -40,6 +40,15 @@
 <script>
 definePageMeta({ layout: false });
 export default {
+    mounted() {
+        this.resetAnimation();
+        const startPosition = this.calculateStartPosition();
+        const scrollingText = this.$refs.scrollingText;
+        scrollingText.style.setProperty("--start-position", `${startPosition}px`);
+
+        const animationDuration = this.calculateAnimationDuration();
+        scrollingText.style.setProperty("--animation-duration", `${animationDuration}s`);
+    },
     methods: {
         goBack() {
             this.$router.go(-1);
@@ -62,15 +71,6 @@ export default {
             const baseDuration = 45;
             return (containerHeight / baseHeight) * baseDuration;
         },
-    },
-    mounted() {
-        this.resetAnimation();
-        const startPosition = this.calculateStartPosition();
-        const scrollingText = this.$refs.scrollingText;
-        scrollingText.style.setProperty("--start-position", `${startPosition}px`);
-
-        const animationDuration = this.calculateAnimationDuration();
-        scrollingText.style.setProperty("--animation-duration", `${animationDuration}s`);
     },
 };
 </script>

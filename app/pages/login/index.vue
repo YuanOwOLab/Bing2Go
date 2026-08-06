@@ -48,19 +48,19 @@
                             :type="showPassword ? 'text' : 'password'"
                             label=""
                             :append-inner-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye-outline'"
-                            @click:append-inner="showPassword = !showPassword"
                             autocomplete="current-password"
                             variant="outlined"
                             density="comfortable"
                             required
                             class="mb-1"
+                            @click:append-inner="showPassword = !showPassword"
                         />
 
                         <!-- 身份選擇 -->
                         <v-radio-group v-model="loginRole" class="mb-1 login-role-group">
                             <div class="d-flex gap-4 justify-space-between">
-                                <v-radio :label="$t('common.customer')" value="customer"></v-radio>
-                                <v-radio :label="$t('common.delivery')" value="delivery"></v-radio>
+                                <v-radio :label="$t('common.customer')" value="customer" />
+                                <v-radio :label="$t('common.delivery')" value="delivery" />
                             </div>
                         </v-radio-group>
                         <div>{{ $t("login.switchRoleInfo") }}</div>
@@ -91,7 +91,7 @@
         location="top"
     >
         {{ snackbarStore.text }}
-        <template v-slot:actions>
+        <template #actions>
             <v-btn variant="text" @click="snackbarStore.show = false">{{ $t("common.close") }}</v-btn>
         </template>
     </v-snackbar>

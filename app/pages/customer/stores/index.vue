@@ -15,7 +15,7 @@
                         prepend-inner-icon="mdi-map-marker-outline"
                         clearable
                         style="max-width: 450px"
-                    ></v-combobox>
+                    />
                 </div>
             </v-col>
         </v-row>
@@ -29,14 +29,14 @@
                     prepend-inner-icon="mdi-magnify"
                     rounded
                     density="comfortable"
-                ></v-text-field>
+                />
             </div>
         </v-row>
 
         <v-row>
             <v-col cols="12">
                 <v-chip-group v-if="tags.length > 0" v-model="selectedTags" multiple>
-                    <v-chip v-for="tag in tags" filter :key="tag" :value="tag">
+                    <v-chip v-for="tag in tags" :key="tag" filter :value="tag">
                         {{ tag }}
                     </v-chip>
                 </v-chip-group>
@@ -45,7 +45,7 @@
 
         <v-row v-if="pending">
             <v-col v-for="n in 8" :key="n" cols="12" sm="6" md="4" lg="3">
-                <v-skeleton-loader type="image, article"></v-skeleton-loader>
+                <v-skeleton-loader type="image, article" />
             </v-col>
         </v-row>
 
@@ -57,7 +57,7 @@
 
         <v-row v-if="loadingMore" class="mt-4">
             <v-col v-for="n in 4" :key="n" cols="12" sm="6" md="4" lg="3">
-                <v-skeleton-loader type="image, article"></v-skeleton-loader>
+                <v-skeleton-loader type="image, article" />
             </v-col>
         </v-row>
 

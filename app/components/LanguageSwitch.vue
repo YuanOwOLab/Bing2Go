@@ -3,7 +3,7 @@
         <div class="switch" :class="{ 'switch-chinese': isChinese }" @click="toggleLanguage">
             <span class="label left">A</span>
             <span class="label right">文</span>
-            <div class="switch-handle"></div>
+            <div class="switch-handle" />
         </div>
     </div>
 </template>

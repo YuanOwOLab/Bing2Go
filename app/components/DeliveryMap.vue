@@ -1,7 +1,7 @@
 <!-- src/components/DeliveryMap.vue -->
 <template>
     <ClientOnly>
-        <div ref="mapContainer" class="delivery-map"></div>
+        <div ref="mapContainer" class="delivery-map" />
     </ClientOnly>
 </template>
 

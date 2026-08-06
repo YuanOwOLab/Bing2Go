@@ -4,7 +4,7 @@
             <div class="d-flex justify-space-between align-start mb-3 flex-wrap">
                 <h3 class="text-h6 font-weight-bold text-blue-darken-1 mr-2 mb-1">新任務 #{{ shortId }}</h3>
                 <v-chip color="primary" variant="outlined" size="small" class="font-weight-bold mb-1">
-                    <v-icon start icon="mdi-clock-fast"></v-icon>
+                    <v-icon start icon="mdi-clock-fast" />
                     送達時間 {{ formattedTime }}
                 </v-chip>
             </div>

@@ -2,9 +2,9 @@
     <v-container>
         <v-row justify="center">
             <v-col cols="12" md="10" lg="8" xl="6">
-                <v-btn @click="goBack" color="secondary" class="mb-4">返回上一頁</v-btn>
+                <v-btn color="secondary" class="mb-4" @click="goBack">返回上一頁</v-btn>
 
-                <div class="messages" ref="messagesContainer">
+                <div ref="messagesContainer" class="messages">
                     <template v-if="messages.length > 0">
                         <div
                             v-for="msg in messages"
@@ -17,7 +17,7 @@
                                 class="elevation-2 mt-1"
                                 :class="msg.senderRole === 'customer' ? 'mr-3' : 'ml-3'"
                             >
-                                <v-img :src="msg.senderImg" alt="Avatar" cover></v-img>
+                                <v-img :src="msg.senderImg" alt="Avatar" cover />
                             </v-avatar>
 
                             <div :class="['message', msg.senderRole === 'customer' ? 'left' : 'right']">

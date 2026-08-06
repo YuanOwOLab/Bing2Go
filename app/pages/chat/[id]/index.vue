@@ -2,8 +2,8 @@
     <v-container class="chat-container">
         <v-row justify="center" class="fill-height">
             <v-col cols="12" md="8" class="d-flex flex-column h-100">
-                <v-btn @click="goBack" color="secondary" class="mb-4 align-self-start">返回上一頁</v-btn>
-                <div class="messages flex-grow-1" ref="messagesContainer">
+                <v-btn color="secondary" class="mb-4 align-self-start" @click="goBack">返回上一頁</v-btn>
+                <div ref="messagesContainer" class="messages flex-grow-1">
                     <div
                         v-for="msg in messages"
                         :key="msg.id"
@@ -38,148 +38,13 @@
                         @keydown.enter.prevent="handleSend"
                         @compositionstart="isComposing = true"
                         @compositionend="isComposing = false"
-                    ></v-combobox>
+                    />
                     <v-btn color="primary" class="send-button" @click="handleSend">送出</v-btn>
                 </div>
             </v-col>
         </v-row>
     </v-container>
 </template>
-
-<style scoped>
-.chat-container {
-    height: calc(100vh - 64px);
-}
-
-.messages {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    overflow-y: auto;
-    padding: 1rem;
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.message {
-    display: inline-block;
-    margin-bottom: 0;
-    padding: 0.75rem;
-    border-radius: 8px;
-    line-height: 1.5;
-    word-wrap: break-word;
-    max-width: 70%;
-    width: auto;
-}
-
-.message.left {
-    background-color: #e3f2fd;
-    text-align: left;
-    border: 1px solid #bbdefb;
-    margin-right: auto;
-}
-
-.message.right {
-    background-color: #ede7f6;
-    text-align: right;
-    border: 1px solid #d1c4e9;
-    margin-left: auto;
-}
-
-.message-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-    font-weight: bold;
-    color: #424242;
-}
-
-.message-header.align-left {
-    justify-content: flex-start;
-}
-
-.message-header.align-right {
-    justify-content: flex-end;
-}
-
-.sender-role {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    color: #ffffff;
-}
-
-.sender-role.left {
-    background-color: #42a5f5;
-}
-
-.sender-role.right {
-    background-color: #7e57c2;
-}
-
-.sender-name {
-    font-size: 1rem;
-    color: #1e88e5;
-}
-
-.timestamp {
-    font-size: 0.8rem;
-    color: #757575;
-    font-style: italic;
-    margin-left: 0.5rem;
-}
-
-.message-content {
-    font-size: 1rem;
-    margin: 0;
-    color: #212121;
-}
-
-.input-area {
-    display: flex;
-    gap: 0.5rem;
-    align-items: flex-start;
-    margin-top: 1rem;
-}
-
-.send-button {
-    flex-shrink: 0;
-    background-color: #1976d2;
-    color: #ffffff;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    height: 56px;
-    width: 80px;
-}
-
-.send-button:hover {
-    background-color: #1565c0;
-}
-
-@media (max-width: 600px) {
-    .chat-container {
-        padding: 0.5rem;
-    }
-    .messages {
-        padding: 0.5rem;
-    }
-    .message {
-        max-width: 85%;
-        padding: 0.5rem;
-    }
-    .send-button {
-        width: 60px;
-        min-width: 60px;
-        padding: 0;
-    }
-}
-</style>
 
 <script setup lang="ts">
 import { useChat } from "@composable/useChat";
@@ -325,3 +190,138 @@ onUnmounted(() => {
     disconnect();
 });
 </script>
+
+<style scoped>
+.chat-container {
+    height: calc(100vh - 64px);
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 0.75rem;
+    border-radius: 8px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    max-width: 70%;
+    width: auto;
+}
+
+.message.left {
+    background-color: #e3f2fd;
+    text-align: left;
+    border: 1px solid #bbdefb;
+    margin-right: auto;
+}
+
+.message.right {
+    background-color: #ede7f6;
+    text-align: right;
+    border: 1px solid #d1c4e9;
+    margin-left: auto;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: #424242;
+}
+
+.message-header.align-left {
+    justify-content: flex-start;
+}
+
+.message-header.align-right {
+    justify-content: flex-end;
+}
+
+.sender-role {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+
+.sender-role.left {
+    background-color: #42a5f5;
+}
+
+.sender-role.right {
+    background-color: #7e57c2;
+}
+
+.sender-name {
+    font-size: 1rem;
+    color: #1e88e5;
+}
+
+.timestamp {
+    font-size: 0.8rem;
+    color: #757575;
+    font-style: italic;
+    margin-left: 0.5rem;
+}
+
+.message-content {
+    font-size: 1rem;
+    margin: 0;
+    color: #212121;
+}
+
+.input-area {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+}
+
+.send-button {
+    flex-shrink: 0;
+    background-color: #1976d2;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    height: 56px;
+    width: 80px;
+}
+
+.send-button:hover {
+    background-color: #1565c0;
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        padding: 0.5rem;
+    }
+    .messages {
+        padding: 0.5rem;
+    }
+    .message {
+        max-width: 85%;
+        padding: 0.5rem;
+    }
+    .send-button {
+        width: 60px;
+        min-width: 60px;
+        padding: 0;
+    }
+}
+</style>

@@ -2,14 +2,14 @@
     <v-container fluid>
         <v-row class="mb-4">
             <v-col cols="12">
-                <v-btn prepend-icon="mdi-arrow-left" variant="text" to="/admin/users" class="mb-2"> </v-btn>
+                <v-btn prepend-icon="mdi-arrow-left" variant="text" to="/admin/users" class="mb-2" />
                 <h2 class="text-h4 font-weight-bold">會員詳細資料</h2>
             </v-col>
         </v-row>
 
         <v-row v-if="pending">
             <v-col cols="12">
-                <v-skeleton-loader type="card-avatar, article"></v-skeleton-loader>
+                <v-skeleton-loader type="card-avatar, article" />
             </v-col>
         </v-row>
 
@@ -24,11 +24,11 @@
                 <v-card elevation="2" class="text-center py-6" height="auto">
                     <v-avatar size="120" color="grey-lighten-2" class="mb-4">
                         <v-img v-if="userInfo.img" :src="userInfo.img" alt="Avatar" cover>
-                            <template v-slot:placeholder>
-                                <v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
+                            <template #placeholder>
+                                <v-progress-circular indeterminate color="grey-lighten-5" />
                             </template>
                         </v-img>
-                        <v-icon v-else icon="mdi-account" size="60" color="grey-darken-1"></v-icon>
+                        <v-icon v-else icon="mdi-account" size="60" color="grey-darken-1" />
                     </v-avatar>
 
                     <h3 class="text-h5 font-weight-bold mb-1">{{ userInfo.name }}</h3>
@@ -38,16 +38,16 @@
                         {{ roleDisplay }}
                     </v-chip>
 
-                    <div class="px-4" v-if="userInfo.role !== 'admin'">
-                        <v-divider class="mb-4"></v-divider>
+                    <div v-if="userInfo.role !== 'admin'" class="px-4">
+                        <v-divider class="mb-4" />
 
                         <v-btn
                             block
                             :color="isBanned ? 'success' : 'error'"
                             :prepend-icon="isBanned ? 'mdi-account-check' : 'mdi-account-cancel'"
                             :loading="processing"
-                            @click="toggleBanStatus"
                             variant="flat"
+                            @click="toggleBanStatus"
                         >
                             {{ isBanned ? "恢復帳號權限" : "停用此帳號" }}
                         </v-btn>
@@ -57,7 +57,7 @@
                         </p>
                     </div>
                     <div v-else class="px-4">
-                        <v-alert type="info" variant="tonal" density="compact" text="無法停用管理員帳號"></v-alert>
+                        <v-alert type="info" variant="tonal" density="compact" text="無法停用管理員帳號" />
                     </div>
                 </v-card>
             </v-col>
@@ -112,7 +112,7 @@
                                 </div>
                             </v-col>
 
-                            <v-col cols="12" v-if="userInfo.role === 'banned'">
+                            <v-col v-if="userInfo.role === 'banned'" cols="12">
                                 <v-alert color="error" variant="tonal" icon="mdi-alert-circle" class="mt-2">
                                     此帳號目前處於停用狀態
                                 </v-alert>

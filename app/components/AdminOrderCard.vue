@@ -23,7 +23,7 @@
             </span>
         </div>
 
-        <v-divider></v-divider>
+        <v-divider />
 
         <v-card-text class="pa-3 pa-sm-5">
             <div class="d-flex align-center mb-3 mb-sm-4">
@@ -32,11 +32,11 @@
                     color="primary"
                     :size="$vuetify.display.smAndUp ? 'large' : 'default'"
                     class="mr-2 mr-sm-3"
-                ></v-icon>
+                />
                 <h2 class="text-h6 text-sm-h5 font-weight-bold text-primary">{{ order.restaurantNames }}</h2>
             </div>
 
-            <v-divider class="mb-3 mb-sm-4 border-dashed"></v-divider>
+            <v-divider class="mb-3 mb-sm-4 border-dashed" />
 
             <v-row>
                 <v-col cols="12" md="7">
@@ -75,7 +75,7 @@
                 </v-col>
 
                 <v-col cols="12" class="d-md-none py-0">
-                    <v-divider class="border-dashed my-2"></v-divider>
+                    <v-divider class="border-dashed my-2" />
                 </v-col>
 
                 <v-col cols="12" md="5" class="d-flex flex-column justify-space-between border-md-left pl-md-6">

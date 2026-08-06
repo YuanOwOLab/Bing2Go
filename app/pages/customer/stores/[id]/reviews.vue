@@ -8,7 +8,7 @@
                 :to="`/customer/stores/${storeId}`"
                 class="mr-4"
                 color="grey-darken-2"
-            ></v-btn>
+            />
             <div>
                 <h1 class="text-h4 font-weight-bold text-grey-darken-3">餐廳評價</h1>
                 <p class="text-subtitle-1 text-grey-darken-1 mt-1">查看大家的用餐體驗或分享您的想法</p>
@@ -19,7 +19,7 @@
         <v-card class="mb-8 rounded-xl border overflow-hidden" elevation="0">
             <div class="bg-primary-lighten-5 px-6 py-4 border-b">
                 <h3 class="text-h6 font-weight-bold text-primary-darken-2 d-flex align-center">
-                    <v-icon icon="mdi-pencil-outline" class="mr-2"></v-icon>
+                    <v-icon icon="mdi-pencil-outline" class="mr-2" />
                     撰寫您的評價
                 </h3>
             </div>
@@ -36,7 +36,7 @@
                             density="comfortable"
                             size="large"
                             class="mr-3"
-                        ></v-rating>
+                        />
                         <v-chip color="amber-darken-2" variant="flat" size="small" class="font-weight-bold">
                             {{ newReview.rating }} 分
                         </v-chip>
@@ -56,12 +56,11 @@
                     class="mb-6"
                     bg-color="grey-lighten-5"
                     color="primary"
-                ></v-textarea>
+                />
 
                 <div class="d-flex justify-end">
                     <v-btn
                         color="primary"
-                        @click="submitReview"
                         :loading="submitting"
                         :disabled="newReview.rating === 0"
                         prepend-icon="mdi-send"
@@ -69,6 +68,7 @@
                         elevation="2"
                         height="44"
                         class="px-6"
+                        @click="submitReview"
                     >
                         送出評價
                     </v-btn>
@@ -82,7 +82,7 @@
             class="bg-grey-lighten-5 border rounded-lg mb-6 px-4 py-3 d-flex flex-wrap align-center justify-space-between gap-4"
         >
             <div class="d-flex align-center text-grey-darken-2 px-2">
-                <v-icon icon="mdi-comment-multiple-outline" class="mr-2" color="primary"></v-icon>
+                <v-icon icon="mdi-comment-multiple-outline" class="mr-2" color="primary" />
                 <span class="font-weight-bold text-h6">{{ reviews.length }}</span>
                 <span class="text-body-2 ml-2 text-grey-darken-1">則評論</span>
             </div>
@@ -101,7 +101,7 @@
                     prepend-inner-icon="mdi-sort"
                     class="rounded-lg"
                     color="primary"
-                ></v-select>
+                />
             </div>
         </v-card>
 
@@ -113,7 +113,7 @@
                 type="article, actions"
                 class="mb-4 rounded-lg border"
                 elevation="0"
-            ></v-skeleton-loader>
+            />
         </div>
 
         <div v-else-if="reviews.length > 0" class="d-flex flex-column ga-4">
@@ -138,7 +138,7 @@
 
         <!-- Loading More -->
         <div v-if="loadingMore" class="py-6 text-center">
-            <v-progress-circular indeterminate color="primary" size="32"></v-progress-circular>
+            <v-progress-circular indeterminate color="primary" size="32" />
         </div>
     </v-container>
 </template>

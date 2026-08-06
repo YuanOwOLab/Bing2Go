@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     pages: true,
     ssr: false,
     devtools: { enabled: true },
-    modules: ["@pinia/nuxt", "@nuxtjs/i18n"],
+    modules: ["@nuxt/eslint", "@pinia/nuxt", "@nuxtjs/i18n"],
     css: ["vuetify/styles", "@mdi/font/css/materialdesignicons.min.css", "leaflet/dist/leaflet.css"],
     i18n: {
         fallbackLocale: "zh",

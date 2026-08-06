@@ -3,7 +3,7 @@
         <v-row justify="center">
             <v-col cols="12" md="10" lg="8">
                 <div v-if="pending" key="loading" class="text-center pa-10">
-                    <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+                    <v-progress-circular indeterminate color="primary" size="64" />
                     <p class="text-h6 mt-4">正在載入訂單資訊...</p>
                 </div>
 
@@ -16,7 +16,7 @@
                     variant="outlined"
                     prominent
                     class="mt-10"
-                ></v-alert>
+                />
 
                 <template v-else key="content">
                     <div class="text-center mt-4 mb-8">
@@ -40,20 +40,19 @@
                                                 ? 'success'
                                                 : undefined
                                     "
-                                >
-                                </v-stepper-item>
-                                <v-divider v-if="index < steps.length - 1"></v-divider>
+                                />
+                                <v-divider v-if="index < steps.length - 1" />
                             </template>
                         </v-stepper-header>
                     </v-stepper>
 
                     <v-card flat border rounded="lg" class="mb-6">
                         <v-card-title class="text-h6 font-weight-bold d-flex align-center">
-                            <v-icon icon="mdi-map-marker-radius" start color="green" class="mr-2"></v-icon>
+                            <v-icon icon="mdi-map-marker-radius" start color="green" class="mr-2" />
                             取餐資訊
                         </v-card-title>
 
-                        <v-divider></v-divider>
+                        <v-divider />
 
                         <v-card-text class="pa-5">
                             <v-row dense>
@@ -64,7 +63,7 @@
                                             icon="mdi-account-outline"
                                             size="small"
                                             class="mr-2 text-medium-emphasis"
-                                        ></v-icon>
+                                        />
                                         {{ orderData.deliveryInfo?.contactName }}
                                     </div>
                                 </v-col>
@@ -76,7 +75,7 @@
                                             icon="mdi-phone-outline"
                                             size="small"
                                             class="mr-2 text-medium-emphasis"
-                                        ></v-icon>
+                                        />
                                         {{ orderData.deliveryInfo?.contactPhone }}
                                     </div>
                                 </v-col>
@@ -88,7 +87,7 @@
                                             icon="mdi-map-marker-outline"
                                             size="small"
                                             class="mr-2 text-medium-emphasis"
-                                        ></v-icon>
+                                        />
                                         {{ orderData.deliveryInfo?.address }}
                                     </div>
                                 </v-col>
@@ -113,7 +112,7 @@
 
                     <v-card flat border rounded="lg" class="mb-6">
                         <v-list-item lines="two" class="pa-5">
-                            <template v-slot:prepend>
+                            <template #prepend>
                                 <v-avatar size="56" class="me-4">
                                     <v-img :src="deliver.img" cover>
                                         <template #error>
@@ -140,7 +139,7 @@
                                 {{ deliver.name }}
                             </v-list-item-title>
                             <v-list-item-subtitle>{{ deliver.status }}</v-list-item-subtitle>
-                            <template v-slot:append>
+                            <template #append>
                                 <span
                                     v-if="deliver.phone && deliver.phone !== '未知'"
                                     class="text-body-1 font-weight-medium text-medium-emphasis"
@@ -170,7 +169,7 @@
                                     <h3 class="text-h6 font-weight-bold">餐廳資訊</h3>
                                 </v-col>
                             </v-row>
-                            <v-divider></v-divider>
+                            <v-divider />
 
                             <div v-for="(item, index) in orderData.items" :key="item._id">
                                 <v-row class="py-3 align-center">
@@ -186,10 +185,10 @@
                                         </div>
                                     </v-col>
                                 </v-row>
-                                <v-divider v-if="index < orderData.items.length - 1"></v-divider>
+                                <v-divider v-if="index < orderData.items.length - 1" />
                             </div>
 
-                            <v-divider></v-divider>
+                            <v-divider />
                             <div class="text-h6 font-weight-bold pt-5">總計 ${{ orderData.total }}</div>
                         </v-card-text>
                     </v-card>
@@ -227,18 +226,9 @@
                                 按下確認後，即表示您已確認收到餐點，請確認餐點無誤後再按下確認。
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                    text="取消"
-                                    :disabled="isUpdating"
-                                    @click="isConfirmDialogVisible = false"
-                                ></v-btn>
-                                <v-btn
-                                    color="success"
-                                    text="確認"
-                                    :loading="isUpdating"
-                                    @click="markAsReceived"
-                                ></v-btn>
+                                <v-spacer />
+                                <v-btn text="取消" :disabled="isUpdating" @click="isConfirmDialogVisible = false" />
+                                <v-btn color="success" text="確認" :loading="isUpdating" @click="markAsReceived" />
                             </v-card-actions>
                         </v-card>
                     </v-dialog>

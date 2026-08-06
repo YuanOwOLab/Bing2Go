@@ -25,7 +25,7 @@
                             readonly
                             density="compact"
                             size="small"
-                        ></v-rating>
+                        />
                     </template>
 
                     <template v-else>
@@ -43,7 +43,7 @@
                     <span>{{ store?.phone }}</span>
                 </div>
 
-                <v-divider class="my-4"></v-divider>
+                <v-divider class="my-4" />
                 <v-btn
                     block
                     color="primary"

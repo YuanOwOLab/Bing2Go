@@ -48,7 +48,7 @@
                                         width="2"
                                         color="primary"
                                         indeterminate
-                                    ></v-progress-circular>
+                                    />
                                 </v-fade-transition>
                             </template>
                         </v-text-field>
@@ -64,7 +64,7 @@
 
         <!-- 載入狀態 -->
         <div v-if="pending && stores.length === 0" class="text-center py-16">
-            <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+            <v-progress-circular indeterminate color="primary" size="64" />
             <p class="mt-4 text-h6 text-medium-emphasis">正在載入餐廳資料...</p>
         </div>
 
@@ -90,7 +90,7 @@
 
             <!-- 載入更多 -->
             <div v-if="loadingMore" class="text-center py-8">
-                <v-progress-circular indeterminate color="primary" size="40"></v-progress-circular>
+                <v-progress-circular indeterminate color="primary" size="40" />
                 <p class="mt-2 text-body-2 text-medium-emphasis">載入更多...</p>
             </div>
 
