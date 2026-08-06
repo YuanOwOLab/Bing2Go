@@ -1,30 +1,29 @@
 # Bing2Go
 
-> 國立海洋大學校園餐飲外送平台  
+> 國立海洋大學校園餐飲外送平台
 > [NTOU Bing2Go](https://ntoubing2go.zeabur.app/)
 
 本專案為國立臺灣海洋大學校園餐飲外送系統，提供校內使用者進行餐廳瀏覽、下單、訂單追蹤與外送互動等功能。
 
-此分支為 **main**，對應 **Release Version 1.0（Iteration 2）**，  
+此分支為 **main**，對應 **Release Version 1.0（Iteration 2）**，
 為目前功能穩定、可展示與驗收之版本。
 
-若需查看最新開發中功能與詳細 commit 紀錄，請參考  
+若需查看最新開發中功能與詳細 commit 紀錄，請參考
 [dev 分支](https://github.com/howard522/eating_at_ntou/tree/dev)
-
 
 ---
 
 ## 專案文件（Project Documents）
 
-- **需求文件（SRD）**  
+- **需求文件（SRD）**
   https://hackmd.io/@se7/r1XpZyNTge
 
-- **系統設計文件（SDD）**  
+- **系統設計文件（SDD）**
   https://hackmd.io/Uu6rbeMKRqiTpVWxje312A
 
-- **測試文件（STD）**  
+- **測試文件（STD）**
   https://hackmd.io/08TcJXmpRTOIYLg6Cs3rvA
-  
+
 ---
 
 ## 系統功能概述
@@ -47,12 +46,12 @@
 
 ## 技術架構（Tech Stack）
 
-| 類別 | 使用技術 | 說明 |
-| --- | --- | --- |
-| **前端 (Frontend)** | **Nuxt 4** · Vue 3 · Pinia · Vuetify · TypeScript | 採用 Nuxt 全端框架與 Composition API，搭配 Vuetify 建立一致的 UI；使用 TypeScript 強化型別安全。 |
-| **後端 (Backend)** | Node.js (Nitro / H3) · RESTful API · JWT · bcryptjs · Swagger | 使用 Nuxt 內建 H3 Server 實作 REST API，支援身分驗證、權限控管與 API 文件自動生成。 |
-| **資料庫 (Database)** | MongoDB · Mongoose | 定義使用者、餐廳、訂單等資料模型，並透過 ODM 操作資料。 |
-| **開發流程 (Workflow)** | TypeScript · pnpm · Git Flow | 採用 Git Flow 管理分支，並以 pnpm 進行套件與腳本管理。 |
+| 類別                    | 使用技術                                                      | 說明                                                                                             |
+| ----------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **前端 (Frontend)**     | **Nuxt 4** · Vue 3 · Pinia · Vuetify · TypeScript             | 採用 Nuxt 全端框架與 Composition API，搭配 Vuetify 建立一致的 UI；使用 TypeScript 強化型別安全。 |
+| **後端 (Backend)**      | Node.js (Nitro / H3) · RESTful API · JWT · bcryptjs · Swagger | 使用 Nuxt 內建 H3 Server 實作 REST API，支援身分驗證、權限控管與 API 文件自動生成。              |
+| **資料庫 (Database)**   | MongoDB · Mongoose                                            | 定義使用者、餐廳、訂單等資料模型，並透過 ODM 操作資料。                                          |
+| **開發流程 (Workflow)** | TypeScript · pnpm · Git Flow                                  | 採用 Git Flow 管理分支，並以 pnpm 進行套件與腳本管理。                                           |
 
 ---
 
@@ -60,11 +59,16 @@
 
 本專案採用明確的 Git Flow 分支策略，以維持多人協作時的程式碼品質、穩定度與可追蹤性。
 
-| 分支類型                             | 命名   | 功能描述                               |
-| -------------------------------- | ---- | ---------------------------------- |
-| `main`                           | 固定   | 部署與正式版本所在分支，僅接受從 `dev` 合併          |
-| `dev`                            | 固定   | 主開發分支，用於整合所有功能與修正                  |
-| `feature/<memberID>-<short-desc>` | 依需建立 | 開發新功能的分支，每個功能獨立開發、測試後再 PR 回 `dev`  |
+| 分支類型                           | 命名     | 功能描述                                                 |
+| ---------------------------------- | -------- | -------------------------------------------------------- |
+| `main`                             | 固定     | 部署與正式版本所在分支，僅接受從 `dev` 合併              |
+| `dev`                              | 固定     | 主開發分支，用於整合所有功能與修正                       |
+| `feature/<memberID>-<short-desc>`  | 依需建立 | 開發新功能的分支，每個功能獨立開發、測試後再 PR 回 `dev` |
+| `fix/<memberID>-<short-desc>`      | 依需建立 | 一般修復 bug 的分支，修復完成後 PR 回 `dev`              |
+| `hotfix/<memberID>-<short-desc>`   | 依需建立 | 緊急修復 bug 的分支，修復完成後 PR 回 `main` 和 `dev`    |
+| `refactor/<memberID>-<short-desc>` | 依需建立 | 重構程式碼的分支，重構完成後 PR 回 `dev`                 |
+| `build/<memberID>-<short-desc>`    | 依需建立 | 建置或部署相關的分支，完成後 PR 回 `dev`                 |
+| `test/<memberID>-<short-desc>`     | 依需建立 | 測試相關的分支，完成後 PR 回 `dev`                       |
 
 ### 開發流程 (Contributing Steps)
 
@@ -83,12 +87,12 @@
 
 常見 type：
 
-* `feat`: 新功能
-* `fix`: 修復 bug
-* `docs`: 文件變更
-* `refactor`: 重構但無功能變動
-* `style`: 程式碼格式、排版
-* `test`: 測試新增或調整
+- `feat`: 新功能
+- `fix`: 修復 bug
+- `docs`: 文件變更
+- `refactor`: 重構但無功能變動
+- `style`: 程式碼格式、排版
+- `test`: 測試新增或調整
 
 範例：
 
@@ -101,14 +105,14 @@ fix: 修正地址轉經緯度快取錯誤 (#95)
 
 PR 需包含以下內容：
 
-* 變更摘要
-* 心情小故事（選填）
+- 變更摘要
+- 心情小故事（選填）
 
 ---
 
 ## 部署狀態（Deployment）
 
-本系統採用 **全站式 Nuxt 應用部署架構**，前後端整合於單一部署環境，  
+本系統採用 **全站式 Nuxt 應用部署架構**，前後端整合於單一部署環境，
 部署設計與實作內容皆以 SDD 為準。
 
 ### 部署說明
@@ -124,19 +128,40 @@ PR 需包含以下內容：
 ---
 
 ## 開發與執行方式
- #### Clone 專案
-`git clone https://github.com/howard522/eating_at_ntou.git`
 
- #### 進入專案目錄
-`cd eating_at_ntou`
+### 環境需求
 
- #### 安裝相依套件
-`pnpm install`
+- Node.js `24.19.0`（建議使用 [nvm](https://github.com/nvm-sh/nvm)）
+- pnpm `11.20.0`
+- Docker（選用，供容器化執行）
 
- #### 啟動開發伺服器
-`pnpm dev`
+### 本機開發
 
---- 
+```bash
+git clone https://github.com/howard522/eating_at_ntou.git
+cd eating_at_ntou
+nvm use
+pnpm install
+pnpm dev
+```
+
+應用程式預設位於 `http://localhost:3000`。
+
+### Docker
+
+Docker 映像使用 Node.js `24.19.0` 與 pnpm `11.20.0`：
+
+```bash
+docker compose up --build
+```
+
+啟動後可從 `http://localhost:3000` 存取。停止服務：
+
+```bash
+docker compose down
+```
+
+---
 
 ## 流程品質與系統品質提升措施說明
 
@@ -152,37 +177,33 @@ PR 需包含以下內容：
 
 **（1）Commit / Push 即時通知（Discord）**
 
-* 當開發者進行 commit 或 push 至指定分支時，GitHub Actions 會自動觸發。
-* 系統會透過 Webhook 將事件推送至 Discord 頻道，通知團隊成員。
-* 可即時掌握程式碼變動狀況，提升團隊溝通效率。
+- 當開發者進行 commit 或 push 至指定分支時，GitHub Actions 會自動觸發。
+- 系統會透過 Webhook 將事件推送至 Discord 頻道，通知團隊成員。
+- 可即時掌握程式碼變動狀況，提升團隊溝通效率。
 
- **改善成效**：
-避免未同步開發狀態造成的衝突，提升開發透明度。
-
-
+    **改善成效**：
+    避免未同步開發狀態造成的衝突，提升開發透明度。
 
 **（2）部署備援節點自動化流程**
 
-* 當程式碼更新時，GitHub Actions 會自動將專案同步至備援部署節點。
-* 備援節點採用 Ubuntu + Docker 環境，與正式部署環境保持一致。
-* 作為測試、維運或主要平台異常時的替代方案。
+- 當程式碼更新時，GitHub Actions 會自動將專案同步至備援部署節點。
+- 備援節點採用 Ubuntu + Docker 環境，與正式部署環境保持一致。
+- 作為測試、維運或主要平台異常時的替代方案。
 
- **改善成效**：
-提升系統穩定性與可維護性，降低單點故障風險。
-
-
+    **改善成效**：
+    提升系統穩定性與可維護性，降低單點故障風險。
 
 **（3）下游 Repository 自動同步與雲端部署**
 
-* 專案採用 **上游 / 下游 Repository 架構**。
-* GitHub Actions 會定期將 upstream（主要開發 Repo）同步至 downstream Repo。
-* **Zeabur 平台** 監聽 downstream Repo 的變動，並自動觸發重新部署。
+- 專案採用 **上游 / 下游 Repository 架構**。
+- GitHub Actions 會定期將 upstream（主要開發 Repo）同步至 downstream Repo。
+- **Zeabur 平台** 監聽 downstream Repo 的變動，並自動觸發重新部署。
 
- **改善成效**：
+    **改善成效**：
 
-* 確保部署版本與開發版本一致
-* 實現無人工介入的自動部署流程
-* 減少人為操作導致部署失誤
+- 確保部署版本與開發版本一致
+- 實現無人工介入的自動部署流程
+- 減少人為操作導致部署失誤
 
 ---
 
@@ -192,27 +213,25 @@ PR 需包含以下內容：
 
 本系統全面導入 **JWT（JSON Web Token）** 作為身分驗證與授權機制。
 
-* 使用者登入後取得 JWT Token
-* API 存取需攜帶有效 Token
-* 系統依據使用者角色（顧客 / 外送員 / 管理員）進行權限控管
-* Token 驗證失敗時回傳適當錯誤碼（401 / 403）
+- 使用者登入後取得 JWT Token
+- API 存取需攜帶有效 Token
+- 系統依據使用者角色（顧客 / 外送員 / 管理員）進行權限控管
+- Token 驗證失敗時回傳適當錯誤碼（401 / 403）
 
- **改善成效**：
+    **改善成效**：
 
-* 防止未授權存取敏感 API
-* 提升整體系統安全性
-* 明確區分不同角色可操作之功能
-
-
+- 防止未授權存取敏感 API
+- 提升整體系統安全性
+- 明確區分不同角色可操作之功能
 
 #### 2. 系統穩定性與安全性設計
 
-* 所有密碼皆經由雜湊（bcrypt）後儲存，避免明文外洩風險
-* REST API 統一由 Serverless Functions 處理，降低攻擊面
-* 第三方 API 呼叫集中於後端，避免金鑰暴露於前端
+- 所有密碼皆經由雜湊（bcrypt）後儲存，避免明文外洩風險
+- REST API 統一由 Serverless Functions 處理，降低攻擊面
+- 第三方 API 呼叫集中於後端，避免金鑰暴露於前端
 
- **改善成效**：
-提升資料安全性，降低潛在資安風險。
+    **改善成效**：
+    提升資料安全性，降低潛在資安風險。
 
 ---
 
@@ -220,9 +239,9 @@ PR 需包含以下內容：
 
 透過上述流程與系統品質提升措施，本專案已具備：
 
-* 自動化開發與部署流程
-* 明確的版本控管與回溯能力
-* 基本且完整的安全驗證機制
-* 可維護、可擴展的系統架構
+- 自動化開發與部署流程
+- 明確的版本控管與回溯能力
+- 基本且完整的安全驗證機制
+- 可維護、可擴展的系統架構
 
 作為 Iteration 2（Release 1.0）版本，已達可穩定展示與功能驗收之品質水準。

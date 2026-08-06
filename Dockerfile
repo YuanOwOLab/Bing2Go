@@ -1,10 +1,10 @@
-FROM node:20-slim AS base
+FROM node:24.19.0-slim AS base
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
 RUN corepack enable \
-    && corepack prepare pnpm@10 --activate
+    && corepack prepare pnpm@11.20.0 --activate
 
 WORKDIR /app
 

@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "types": ["@types/node", "nuxt/schema"],
-        "baseUrl": ".",
         "paths": {
             "@app/*": ["./app/*"],
             "@composable/*": ["./app/composable/*"],
