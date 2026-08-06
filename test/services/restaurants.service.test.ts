@@ -9,21 +9,6 @@ import { mockObjectUtils } from "@mocks/utils/object.mock";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 // ---------------------------------------------------------------------
-// 在這裡設定區域的 mocks 或測試前置條件
-// ---------------------------------------------------------------------
-
-mockObjectUtils();
-mockNominatimUtils();
-mockMongoQueryUtils();
-
-const getGeocodeFromAddressMock = nominatimUtilMocks.getGeocodeFromAddress;
-const buildRestaurantSearchQueryMock = mongoQueryUtilMocks.buildRestaurantSearchQuery;
-
-beforeEach(() => {
-    mocks.restaurantInstances.length = 0;
-});
-
-// ---------------------------------------------------------------------
 // Import 要測試的功能
 // ---------------------------------------------------------------------
 
@@ -41,6 +26,21 @@ import {
     updateMenuItemById,
     updateRestaurantById,
 } from "$services/restaurants.service";
+
+// ---------------------------------------------------------------------
+// 在這裡設定區域的 mocks 或測試前置條件
+// ---------------------------------------------------------------------
+
+mockObjectUtils();
+mockNominatimUtils();
+mockMongoQueryUtils();
+
+const getGeocodeFromAddressMock = nominatimUtilMocks.getGeocodeFromAddress;
+const buildRestaurantSearchQueryMock = mongoQueryUtilMocks.buildRestaurantSearchQuery;
+
+beforeEach(() => {
+    mocks.restaurantInstances.length = 0;
+});
 
 // ---------------------------------------------------------------------
 // 測試開始

@@ -185,7 +185,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // 查詢訂單
-    let orders = await getAvailableOrdersForDeliveryPerson(
+    const orders = await getAvailableOrdersForDeliveryPerson(
         lat ? Number(lat) : undefined,
         lon ? Number(lon) : undefined,
         keyword ? String(keyword) : undefined,

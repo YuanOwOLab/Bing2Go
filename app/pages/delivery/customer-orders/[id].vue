@@ -3,7 +3,7 @@
         <v-row justify="center" class="my-lg-10">
             <v-col cols="12">
                 <div v-if="pending" key="loading" class="text-center pa-10">
-                    <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+                    <v-progress-circular indeterminate color="primary" size="64" />
                     <p class="text-h6 mt-4">正在載入訂單...</p>
                 </div>
                 <v-alert
@@ -15,7 +15,7 @@
                     variant="outlined"
                     prominent
                     class="mt-10"
-                ></v-alert>
+                />
 
                 <template v-else key="content">
                     <v-card flat border rounded="xl">
@@ -23,7 +23,7 @@
 
                         <v-card-text class="pl-6 pr-6">
                             <div class="text-subtitle-1 font-weight-bold mb-1">訂單詳細資訊</div>
-                            <v-divider class="mb-4"></v-divider>
+                            <v-divider class="mb-4" />
 
                             <v-row>
                                 <v-col cols="12" sm="4" class="text-body-2 text-medium-emphasis pb-0 pb-sm-3"
@@ -98,10 +98,10 @@
                                     </div>
                                 </v-col>
                             </v-row>
-                            <v-divider class="mt-2 mb-7"></v-divider>
+                            <v-divider class="mt-2 mb-7" />
 
                             <div class="text-subtitle-1 font-weight-bold mb-1">訂單內容</div>
-                            <v-divider class="mb-4"></v-divider>
+                            <v-divider class="mb-4" />
 
                             <v-list dense lines="one" bg-color="transparent">
                                 <v-list-item v-for="item in orderData.items" :key="item._id" class="px-0">
@@ -111,7 +111,7 @@
                                 </v-list-item>
                             </v-list>
 
-                            <v-divider class="mt-2 mb-4"></v-divider>
+                            <v-divider class="mt-2 mb-4" />
 
                             <div class="text-right">
                                 <span class="text-body-1">外送費：</span>
@@ -144,9 +144,9 @@
                             為了確保訂單順利，您必須先在「我的帳戶」頁面中填寫您的電話號碼，然後才能開始接單。
                         </v-card-text>
                         <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn text="取消" @click="isPhoneMissing = false"></v-btn>
-                            <v-btn color="primary" text="前往我的帳戶" @click="goToAccount"></v-btn>
+                            <v-spacer />
+                            <v-btn text="取消" @click="isPhoneMissing = false" />
+                            <v-btn color="primary" text="前往我的帳戶" @click="goToAccount" />
                         </v-card-actions>
                     </v-card>
                 </v-dialog>

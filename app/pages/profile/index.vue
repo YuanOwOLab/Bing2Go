@@ -8,8 +8,8 @@
                             color="primary"
                             variant="flat"
                             class="font-weight-bold logout-btn"
-                            @click="userStore.logout()"
                             to="/login"
+                            @click="userStore.logout()"
                         >
                             登出
                         </v-btn>
@@ -17,7 +17,7 @@
                         <div class="text-center mt-8 mb-6">
                             <!-- 點擊頭像觸發裁切對話框 -->
                             <v-avatar color="primary" size="80" class="cursor-pointer" @click="showCropper = true">
-                                <v-img :src="imagePreviewUrl || userStore.info?.img" cover></v-img>
+                                <v-img :src="imagePreviewUrl || userStore.info?.img" cover />
                             </v-avatar>
                             <h2 class="text-h5 font-weight-bold mt-2">
                                 {{ userStore.info?.name }}
@@ -50,7 +50,7 @@
                                     hide-details
                                     class="font-weight-medium"
                                     placeholder="無法取得用戶暱稱"
-                                ></v-text-field>
+                                />
                             </div>
 
                             <div class="mb-2">
@@ -61,7 +61,7 @@
                                     hide-details
                                     class="font-weight-medium"
                                     placeholder="無法取得用戶地址"
-                                ></v-text-field>
+                                />
                             </div>
 
                             <div class="mb-2">
@@ -72,7 +72,7 @@
                                     hide-details
                                     class="font-weight-medium"
                                     placeholder="無法取得用戶電話"
-                                ></v-text-field>
+                                />
                             </div>
 
                             <div class="mb-2">
@@ -84,7 +84,7 @@
                                     placeholder="留空表示不修改"
                                     hide-details
                                     class="font-weight-medium"
-                                ></v-text-field>
+                                />
                             </div>
 
                             <div class="mb-2">
@@ -96,7 +96,7 @@
                                     placeholder="留空表示不修改"
                                     hide-details
                                     class="font-weight-medium"
-                                ></v-text-field>
+                                />
                             </div>
 
                             <div class="mb-2">
@@ -108,7 +108,7 @@
                                     placeholder="請再次輸入新密碼"
                                     hide-details
                                     class="font-weight-medium"
-                                ></v-text-field>
+                                />
                             </div>
 
                             <v-btn type="submit" color="primary" block size="large" class="mt-4" :disabled="saving">
@@ -116,7 +116,7 @@
                             </v-btn>
                         </v-form>
 
-                        <v-divider class="my-4"></v-divider>
+                        <v-divider class="my-4" />
 
                         <div class="text-center">
                             <v-btn

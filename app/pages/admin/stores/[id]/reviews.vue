@@ -8,7 +8,7 @@
                 :to="`/admin/stores/${storeId}`"
                 class="mr-4"
                 color="grey-darken-2"
-            ></v-btn>
+            />
             <div>
                 <h1 class="text-h4 font-weight-bold text-grey-darken-3">餐廳評價管理</h1>
                 <p class="text-subtitle-1 text-grey-darken-1 mt-1">查看並管理所有顧客對此餐廳的評論</p>
@@ -21,7 +21,7 @@
             class="bg-grey-lighten-5 border rounded-lg mb-6 px-4 py-3 d-flex flex-wrap align-center justify-space-between gap-4"
         >
             <div class="d-flex align-center text-grey-darken-2 px-2">
-                <v-icon icon="mdi-comment-multiple-outline" class="mr-2" color="primary"></v-icon>
+                <v-icon icon="mdi-comment-multiple-outline" class="mr-2" color="primary" />
                 <span class="font-weight-bold text-h6">{{ reviews.length }}</span>
                 <span class="text-body-2 ml-2 text-grey-darken-1">則評論</span>
             </div>
@@ -40,7 +40,7 @@
                     prepend-inner-icon="mdi-sort"
                     class="rounded-lg"
                     color="primary"
-                ></v-select>
+                />
             </div>
         </v-card>
 
@@ -52,7 +52,7 @@
                 type="article, actions"
                 class="mb-4 rounded-lg border"
                 elevation="0"
-            ></v-skeleton-loader>
+            />
         </div>
 
         <div v-else-if="reviews.length > 0" class="d-flex flex-column ga-4">
@@ -69,12 +69,12 @@
                                 color="error"
                                 variant="tonal"
                                 prepend-icon="mdi-delete-outline"
-                                @click="deleteReview(review._id)"
                                 :loading="deleting === review._id"
                                 class="text-none px-6"
                                 rounded="lg"
                                 height="44"
                                 block
+                                @click="deleteReview(review._id)"
                             >
                                 刪除評論
                             </v-btn>
@@ -95,7 +95,7 @@
 
         <!-- Loading More -->
         <div v-if="loadingMore" class="py-6 text-center">
-            <v-progress-circular indeterminate color="primary" size="32"></v-progress-circular>
+            <v-progress-circular indeterminate color="primary" size="32" />
         </div>
     </v-container>
 </template>

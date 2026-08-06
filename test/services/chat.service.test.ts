@@ -5,18 +5,18 @@ import { createChainedQueryMock } from "@mocks/query.mock";
 import { beforeEach, describe, expect, it } from "vitest";
 
 // ---------------------------------------------------------------------
+// Import 要測試的功能
+// ---------------------------------------------------------------------
+
+import { createChatMessage, getChatMessagesByOrderId } from "$services/chat.service";
+
+// ---------------------------------------------------------------------
 // 在這裡設定區域的 mocks 或測試前置條件
 // ---------------------------------------------------------------------
 
 beforeEach(() => {
     mocks.chatInstances.length = 0;
 });
-
-// ---------------------------------------------------------------------
-// Import 要測試的功能
-// ---------------------------------------------------------------------
-
-import { createChatMessage, getChatMessagesByOrderId } from "$services/chat.service";
 
 // ---------------------------------------------------------------------
 // 測試開始

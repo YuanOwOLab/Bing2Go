@@ -7,6 +7,19 @@ import { distanceUtilMocks, mockDistanceUtils } from "@mocks/utils/distance.mock
 import { beforeEach, describe, expect, it } from "vitest";
 
 // ---------------------------------------------------------------------
+// Import 要測試的功能
+// ---------------------------------------------------------------------
+
+import Cart from "$models/cart.model";
+import {
+    calculateDeliveryFee,
+    clearCartByUserId,
+    createCartForUser,
+    getCartByUserId,
+    updateCartByUserId,
+} from "$services/cart.service";
+
+// ---------------------------------------------------------------------
 // 在這裡設定區域的 mocks 或測試前置條件
 // ---------------------------------------------------------------------
 
@@ -19,19 +32,6 @@ const haversineDistanceMock = distanceUtilMocks.haversineDistance;
 beforeEach(() => {
     mocks.cartInstances.length = 0;
 });
-
-// ---------------------------------------------------------------------
-// Import 要測試的功能
-// ---------------------------------------------------------------------
-
-import Cart from "$models/cart.model";
-import {
-    calculateDeliveryFee,
-    clearCartByUserId,
-    createCartForUser,
-    getCartByUserId,
-    updateCartByUserId,
-} from "$services/cart.service";
 
 // ---------------------------------------------------------------------
 // 測試開始

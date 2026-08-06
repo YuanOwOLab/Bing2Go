@@ -309,7 +309,7 @@ export async function getAvailableOrdersForDeliveryPerson(
         filter["items.restaurant.id"] = { $in: restaurantIds };
     }
 
-    let orders = await Order.find(filter)
+    const orders = await Order.find(filter)
         .populate("items.restaurant.id", "name locationGeo phone address")
         .sort({ createdAt: -1 })
         .limit(limit)
@@ -327,7 +327,7 @@ export async function getAvailableOrdersForDeliveryPerson(
                 const restaurant = item.restaurant?.id;
                 const coord = restaurant?.locationGeo?.coordinates;
                 if (coord) {
-                    let dis = haversineDistance(userPos, coord);
+                    const dis = haversineDistance(userPos, coord);
                     dis_sum += dis;
                 }
             });

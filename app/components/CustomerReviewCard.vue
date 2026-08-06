@@ -1,10 +1,10 @@
 <template>
     <v-card class="mb-4" flat border rounded="lg">
         <v-card-item class="pb-2">
-            <template v-slot:prepend>
+            <template #prepend>
                 <v-avatar color="grey-lighten-3" size="48" class="elevation-1">
-                    <v-img v-if="review.user?.img" :src="review.user.img" alt="Avatar" cover></v-img>
-                    <v-icon v-else icon="mdi-account" color="grey-darken-1" size="28"></v-icon>
+                    <v-img v-if="review.user?.img" :src="review.user.img" alt="Avatar" cover />
+                    <v-icon v-else icon="mdi-account" color="grey-darken-1" size="28" />
                 </v-avatar>
             </template>
 
@@ -13,11 +13,11 @@
             </v-card-title>
 
             <v-card-subtitle class="text-caption text-grey-darken-1 d-flex align-center mt-1">
-                <v-icon icon="mdi-clock-outline" size="14" class="mr-1"></v-icon>
+                <v-icon icon="mdi-clock-outline" size="14" class="mr-1" />
                 {{ formatDate(review.createdAt) }}
             </v-card-subtitle>
 
-            <template v-slot:append>
+            <template #append>
                 <div
                     class="d-flex align-center bg-amber-lighten-5 px-3 py-1 rounded-pill border border-amber-lighten-4"
                 >
@@ -29,13 +29,13 @@
                         size="x-small"
                         readonly
                         half-increments
-                    ></v-rating>
+                    />
                     <span class="text-caption font-weight-bold text-amber-darken-4 ml-2">{{ review.rating }}</span>
                 </div>
             </template>
         </v-card-item>
 
-        <v-divider class="mx-4 opacity-20"></v-divider>
+        <v-divider class="mx-4 opacity-20" />
 
         <v-card-text
             class="pt-4 text-body-1 text-grey-darken-3"

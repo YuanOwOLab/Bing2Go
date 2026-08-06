@@ -2,7 +2,7 @@
     <v-card class="rounded-lg store-card" :to="`/customer/stores/${id}`" :style="{ '--hover-bg': hoverBgColor }">
         <div class="image-container">
             <v-img :src="image" height="150px" cover class="store-image">
-                <template v-slot:error>
+                <template #error>
                     <div class="d-flex align-center justify-center fill-height" style="background-color: #e0e0e0">
                         <span class="text-h3 text-white font-weight-bold letter-spacing-lg"> ? ? ? ? ? </span>
                     </div>
@@ -28,8 +28,8 @@
                     size="x-small"
                     density="compact"
                     style="transform: translateY(-2px)"
-                ></v-rating>
-                <span class="text-caption text-grey ml-1"> </span>
+                />
+                <span class="text-caption text-grey ml-1" />
             </template>
 
             <template v-else>

@@ -11,7 +11,7 @@
                             size="large"
                             class="mr-4"
                             @click="$router.back()"
-                        ></v-btn>
+                        />
 
                         <div class="d-flex align-center">
                             <div>
@@ -32,7 +32,7 @@
                         </div>
                     </v-col>
 
-                    <v-spacer class="d-none d-md-block"></v-spacer>
+                    <v-spacer class="d-none d-md-block" />
 
                     <v-col cols="12" md="auto" class="d-flex align-center justify-start justify-md-end">
                         <v-chip
@@ -48,7 +48,7 @@
                 </v-row>
 
                 <div v-if="pending" class="text-center pa-10">
-                    <v-progress-circular indeterminate color="primary" size="80"></v-progress-circular>
+                    <v-progress-circular indeterminate color="primary" size="80" />
                     <p class="text-h5 mt-6 text-grey-darken-1">正在讀取資料...</p>
                 </div>
 
@@ -62,7 +62,7 @@
                     class="mt-4 mx-2"
                     icon="mdi-alert"
                     prominent
-                ></v-alert>
+                />
 
                 <template v-else>
                     <v-card class="mb-8 rounded-lg border-none elevation-2">
@@ -77,18 +77,18 @@
                                             :color="getStepColor(step.id)"
                                             :error="orderData.customerStatus === 'cancelled'"
                                         >
-                                            <template v-slot:icon>
+                                            <template #icon>
                                                 <v-icon v-if="orderData.customerStatus === 'cancelled'"
                                                     >mdi-close</v-icon
                                                 >
                                                 <v-icon v-else size="large">{{ step.icon }}</v-icon>
                                             </template>
 
-                                            <template v-slot:title>
+                                            <template #title>
                                                 <div class="text-h6 font-weight-bold mt-2">{{ step.title }}</div>
                                             </template>
                                         </v-stepper-item>
-                                        <v-divider v-if="index < steps.length - 1" :thickness="3"></v-divider>
+                                        <v-divider v-if="index < steps.length - 1" :thickness="3" />
                                     </template>
                                 </v-stepper-header>
                             </v-stepper>
@@ -104,10 +104,10 @@
                                     <v-icon start color="primary" size="large" class="mr-3">mdi-account-details</v-icon>
                                     顧客與配送資訊
                                 </v-card-title>
-                                <v-divider></v-divider>
+                                <v-divider />
                                 <v-list lines="two" class="py-4 px-2">
                                     <v-list-item>
-                                        <template v-slot:prepend>
+                                        <template #prepend>
                                             <v-avatar color="blue-lighten-5" size="56" class="mr-4">
                                                 <v-icon color="blue" size="32">mdi-account</v-icon>
                                             </v-avatar>
@@ -123,10 +123,10 @@
                                         </v-list-item-subtitle>
                                     </v-list-item>
 
-                                    <v-divider inset class="my-4"></v-divider>
+                                    <v-divider inset class="my-4" />
 
                                     <v-list-item>
-                                        <template v-slot:prepend>
+                                        <template #prepend>
                                             <v-avatar color="purple-lighten-5" size="56" class="mr-4">
                                                 <v-icon color="purple" size="32">mdi-map-marker</v-icon>
                                             </v-avatar>
@@ -146,19 +146,15 @@
                                                 v-if="orderData.deliveryInfo.note"
                                                 class="mt-2 text-subtitle-1 text-orange-darken-3 bg-orange-lighten-5 px-3 py-2 rounded d-inline-block font-weight-medium"
                                             >
-                                                <v-icon start size="small" icon="mdi-note-text-outline"></v-icon>
+                                                <v-icon start size="small" icon="mdi-note-text-outline" />
                                                 備註: {{ orderData.deliveryInfo.note }}
                                             </div>
                                         </v-list-item-subtitle>
                                     </v-list-item>
-                                    <v-divider
-                                        v-if="orderData.deliveryStatus === 'on_the_way'"
-                                        inset
-                                        class="my-4"
-                                    ></v-divider>
+                                    <v-divider v-if="orderData.deliveryStatus === 'on_the_way'" inset class="my-4" />
 
                                     <v-list-item v-if="orderData.deliveryStatus === 'on_the_way'">
-                                        <template v-slot:prepend>
+                                        <template #prepend>
                                             <v-avatar color="green-lighten-5" size="56" class="mr-4">
                                                 <v-icon color="green" size="32">mdi-clock-outline</v-icon>
                                             </v-avatar>
@@ -182,7 +178,7 @@
                                     <v-icon start color="orange-darken-2" size="large" class="mr-3">mdi-moped</v-icon>
                                     外送員資訊
                                 </v-card-title>
-                                <v-divider></v-divider>
+                                <v-divider />
 
                                 <div v-if="orderData.deliveryPerson" class="pa-6">
                                     <div class="d-flex align-center">
@@ -230,7 +226,7 @@
                         <v-card-title class="text-h5 font-weight-bold text-grey-darken-3 bg-grey-lighten-5 py-4 px-6">
                             配送路徑概覽
                         </v-card-title>
-                        <v-divider></v-divider>
+                        <v-divider />
                         <v-card-text class="pa-0" style="height: 400px; position: relative">
                             <DeliveryMap
                                 :driver-position="courierPosition"
@@ -247,7 +243,7 @@
                             <v-icon start color="red-lighten-1" size="large" class="mr-3">mdi-receipt-text</v-icon>
                             訂單內容詳情
                         </v-card-title>
-                        <v-divider></v-divider>
+                        <v-divider />
 
                         <v-card-text class="pa-0">
                             <v-table>
@@ -294,7 +290,7 @@
                             </v-table>
                         </v-card-text>
 
-                        <v-divider></v-divider>
+                        <v-divider />
 
                         <v-card-text class="pa-8 bg-grey-lighten-5">
                             <v-row dense justify="end">
@@ -313,7 +309,7 @@
                                     >${{ orderData.deliveryFee }}</v-col
                                 >
                             </v-row>
-                            <v-divider class="my-4 border-opacity-25" color="black"></v-divider>
+                            <v-divider class="my-4 border-opacity-25" color="black" />
                             <v-row dense justify="end" align="center">
                                 <v-col
                                     cols="6"

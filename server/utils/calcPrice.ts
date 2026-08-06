@@ -24,23 +24,23 @@ export function calculateDeliveryFeeByDistance(distance: number): number {
 
     // 2 ~ 5 公里間，每公里 4 元
     if (distance <= 5) {
-        let fee = calculateDeliveryFeeByDistance(2) + (distance - 2) * 4 + 30;
+        const fee = calculateDeliveryFeeByDistance(2) + (distance - 2) * 4 + 30;
         return Math.round(fee);
     }
 
     // 5 ~ 20 公里間，每公里 8 元
     if (distance <= 20) {
-        let fee = calculateDeliveryFeeByDistance(5) + (distance - 5) * 8;
+        const fee = calculateDeliveryFeeByDistance(5) + (distance - 5) * 8;
         return Math.round(fee);
     }
 
     // 20 ~ 200 公里間，每公里 12 元
     if (distance <= 200) {
-        let fee = calculateDeliveryFeeByDistance(20) + (distance - 20) * 12;
+        const fee = calculateDeliveryFeeByDistance(20) + (distance - 20) * 12;
         return Math.round(fee);
     }
 
     // 超過 200 公里，越遠越貴
-    let fee = (distance + 51.956746045892004) * Math.pow(distance / 5, Math.log10(4));
+    const fee = (distance + 51.956746045892004) * Math.pow(distance / 5, Math.log10(4));
     return Math.round(fee);
 }

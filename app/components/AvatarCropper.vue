@@ -9,7 +9,7 @@
                     :label="$t('avatarCropper.selectImage')"
                     accept="image/*"
                     prepend-icon="mdi-camera"
-                    @update:modelValue="previewImage"
+                    @update:model-value="previewImage"
                 />
                 <v-radio-group v-model="cropType" class="mt-2" :disabled="!imageObj">
                     <v-radio :label="$t('avatarCropper.centerCrop')" value="center" />
@@ -42,7 +42,7 @@
                         :height="canvasSize"
                         class="preview-canvas"
                         @pointerdown="startDrag"
-                    ></canvas>
+                    />
                 </div>
             </v-col>
         </v-row>

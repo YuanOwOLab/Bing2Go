@@ -9,7 +9,7 @@
                         <!-- 點擊頭像觸發裁切對話框 -->
                         <div class="text-center mt-2 mb-4">
                             <v-avatar color="primary" size="80" class="cursor-pointer" @click="showCropper = true">
-                                <v-img :src="imagePreviewUrl" cover></v-img>
+                                <v-img :src="imagePreviewUrl" cover />
                             </v-avatar>
                             <p class="text-body-1 text-medium-emphasis">
                                 {{ userStore.info?.email }}
@@ -23,7 +23,7 @@
                                     $t("avatarCropper.dialogTitle")
                                 }}</v-card-title>
                                 <v-card-text>
-                                    <AvatarCropper :imageFile="imageFile" @cropped="onAvatarCropped" />
+                                    <AvatarCropper :image-file="imageFile" @cropped="onAvatarCropped" />
                                 </v-card-text>
                                 <v-card-actions>
                                     <v-spacer />
@@ -41,7 +41,7 @@
                                 clearable
                                 required
                                 class="mb-2"
-                            ></v-text-field>
+                            />
 
                             <!-- 電子郵件欄位 -->
                             <v-text-field
@@ -52,7 +52,7 @@
                                 clearable
                                 required
                                 class="mb-2"
-                            ></v-text-field>
+                            />
 
                             <!-- 密碼欄位 -->
                             <v-text-field
@@ -60,12 +60,12 @@
                                 :label="$t('common.password')"
                                 :type="showPwd ? 'text' : 'password'"
                                 :append-inner-icon="showPwd ? 'mdi-eye-off' : 'mdi-eye'"
-                                @click:append-inner="showPwd = !showPwd"
                                 :rules="passwordRules"
                                 clearable
                                 required
                                 class="mb-2"
-                            ></v-text-field>
+                                @click:append-inner="showPwd = !showPwd"
+                            />
 
                             <!-- 地址欄位 -->
                             <v-text-field
@@ -73,7 +73,7 @@
                                 :label="$t('register.defaultDeliveryAddress')"
                                 clearable
                                 class="mb-2"
-                            ></v-text-field>
+                            />
 
                             <!-- 電話欄位 -->
                             <v-text-field
@@ -81,7 +81,7 @@
                                 :label="$t('register.contactPhone')"
                                 clearable
                                 class="mb-2"
-                            ></v-text-field>
+                            />
 
                             <!-- 註冊按鈕 -->
                             <v-btn
@@ -126,7 +126,7 @@
         location="top"
     >
         {{ snackbarStore.text }}
-        <template v-slot:actions>
+        <template #actions>
             <v-btn variant="text" @click="snackbarStore.show = false">{{ $t("common.close") }}</v-btn>
         </template>
     </v-snackbar>

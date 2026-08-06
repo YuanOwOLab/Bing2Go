@@ -7,19 +7,19 @@
         :style="{ '--hover-bg': hoverBgColor }"
     >
         <v-card-item>
-            <template v-slot:prepend>
+            <template #prepend>
                 <v-avatar size="60" color="grey-lighten-2" class="image-container">
                     <v-img v-if="user.img" :src="user.img" alt="Avatar" cover class="user-image">
-                        <template v-slot:placeholder>
+                        <template #placeholder>
                             <v-row class="fill-height ma-0" align="center" justify="center">
-                                <v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
+                                <v-progress-circular indeterminate color="grey-lighten-5" />
                             </v-row>
                         </template>
-                        <template v-slot:error>
-                            <v-icon icon="mdi-account" size="30" color="grey"></v-icon>
+                        <template #error>
+                            <v-icon icon="mdi-account" size="30" color="grey" />
                         </template>
                     </v-img>
-                    <v-icon v-else icon="mdi-account" size="30" color="grey-darken-1"></v-icon>
+                    <v-icon v-else icon="mdi-account" size="30" color="grey-darken-1" />
                 </v-avatar>
             </template>
 
@@ -28,7 +28,7 @@
             </v-card-title>
 
             <v-card-subtitle class="mt-1 opacity-80">
-                <v-icon icon="mdi-email-outline" size="small" class="mr-1"></v-icon>
+                <v-icon icon="mdi-email-outline" size="small" class="mr-1" />
                 {{ user.email }}
             </v-card-subtitle>
         </v-card-item>

@@ -4,6 +4,23 @@ import { distanceUtilMocks, mockDistanceUtils } from "@mocks/utils/distance.mock
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 // ---------------------------------------------------------------------
+// Import 要測試的功能
+// ---------------------------------------------------------------------
+
+import Order from "$models/order.model";
+import {
+    createOrder,
+    getAvailableOrdersForDeliveryPerson,
+    getOrderById,
+    getOrderOwnership,
+    getOrderStatus,
+    getOrdersByUserRole,
+    getOrdersForAdmin,
+    updateOrderDeliveryPerson,
+    updateOrderStatusById,
+} from "$services/order.service";
+
+// ---------------------------------------------------------------------
 // 在這裡設定區域的 mocks 或測試前置條件
 // ---------------------------------------------------------------------
 
@@ -61,23 +78,6 @@ beforeAll(() => {
 beforeEach(() => {
     mocks.orderInstances.length = 0;
 });
-
-// ---------------------------------------------------------------------
-// Import 要測試的功能
-// ---------------------------------------------------------------------
-
-import Order from "$models/order.model";
-import {
-    createOrder,
-    getAvailableOrdersForDeliveryPerson,
-    getOrderById,
-    getOrderOwnership,
-    getOrderStatus,
-    getOrdersByUserRole,
-    getOrdersForAdmin,
-    updateOrderDeliveryPerson,
-    updateOrderStatusById,
-} from "$services/order.service";
 
 // ---------------------------------------------------------------------
 // 測試開始

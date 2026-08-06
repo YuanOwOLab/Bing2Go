@@ -61,21 +61,21 @@
                                             size="small"
                                             variant="text"
                                             @click="cartStore.updateItemQuantity(item.menuItemId, item.quantity - 1)"
-                                        ></v-btn>
+                                        />
                                         <span class="mx-3 font-weight-bold">{{ item.quantity }}</span>
                                         <v-btn
                                             icon="mdi-plus"
                                             size="small"
                                             variant="text"
                                             @click="cartStore.updateItemQuantity(item.menuItemId, item.quantity + 1)"
-                                        ></v-btn>
+                                        />
                                     </div>
                                 </div>
 
-                                <v-divider v-if="index < group.length - 1"></v-divider>
+                                <v-divider v-if="index < group.length - 1" />
                             </template>
 
-                            <v-divider></v-divider>
+                            <v-divider />
                             <div class="d-flex justify-end align-center pa-4">
                                 <span class="text-medium-emphasis">小計：</span>
                                 <span class="font-weight-bold ml-2 text-h6"
@@ -108,7 +108,7 @@
                             </span>
                         </div>
 
-                        <v-divider class="my-5"></v-divider>
+                        <v-divider class="my-5" />
 
                         <div class="d-flex justify-space-between align-center">
                             <span class="text-h6 font-weight-bold">訂單總金額</span>

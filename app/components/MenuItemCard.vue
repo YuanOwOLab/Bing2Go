@@ -2,8 +2,8 @@
     <v-card
         variant="flat"
         class="rounded-lg d-flex align-center pa-3 border-b menu-item-card"
-        @click="onAddClick"
         :style="{ '--hover-bg': hoverBgColor }"
+        @click="onAddClick"
     >
         <v-avatar :size="xs ? 60 : 80" rounded="lg" class="mr-3 mr-sm-4 image-container">
             <v-img :src="item.image" cover class="menu-item-image">
@@ -41,7 +41,7 @@
                 variant="flat"
                 rounded="circle"
                 @click="onAddClick"
-            ></v-btn>
+            />
         </div>
     </v-card>
 </template>

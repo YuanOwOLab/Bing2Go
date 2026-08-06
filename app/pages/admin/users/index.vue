@@ -26,7 +26,7 @@
                             clearable
                             bg-color="white"
                             rounded="lg"
-                        ></v-text-field>
+                        />
                     </v-col>
 
                     <v-col cols="6" sm="3" md="3">
@@ -42,7 +42,7 @@
                             hide-details
                             bg-color="white"
                             rounded="lg"
-                        ></v-select>
+                        />
                     </v-col>
 
                     <v-col cols="6" sm="3" md="3">
@@ -58,7 +58,7 @@
                             hide-details
                             bg-color="white"
                             rounded="lg"
-                        ></v-select>
+                        />
                     </v-col>
                 </v-row>
 
@@ -85,7 +85,7 @@
 
         <v-row v-if="pending && users.length === 0">
             <v-col v-for="n in 8" :key="`skeleton-${n}`" cols="12" sm="6" md="4" lg="3" xl="3">
-                <v-skeleton-loader type="avatar, article" elevation="2"></v-skeleton-loader>
+                <v-skeleton-loader type="avatar, article" elevation="2" />
             </v-col>
         </v-row>
 
@@ -97,7 +97,7 @@
 
         <v-row v-if="loadingMore" class="mt-4">
             <v-col v-for="n in 4" :key="`loading-${n}`" cols="12" sm="6" md="4" lg="3" xl="3">
-                <v-skeleton-loader type="avatar, article" elevation="2"></v-skeleton-loader>
+                <v-skeleton-loader type="avatar, article" elevation="2" />
             </v-col>
         </v-row>
 
@@ -110,7 +110,7 @@
 
         <v-snackbar v-model="showError" color="error" location="bottom right">
             載入使用者失敗
-            <template v-slot:actions>
+            <template #actions>
                 <v-btn variant="text" @click="showError = false">關閉</v-btn>
             </template>
         </v-snackbar>

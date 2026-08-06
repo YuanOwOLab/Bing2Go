@@ -3,7 +3,7 @@
         <v-row justify="center">
             <v-col cols="12" md="10" lg="8">
                 <div v-if="pending" key="loading" class="text-center pa-10">
-                    <v-progress-circular indeterminate color="primary" size="64"></v-progress-circular>
+                    <v-progress-circular indeterminate color="primary" size="64" />
                     <p class="text-h6 mt-4">正在載入任務資訊...</p>
                 </div>
 
@@ -16,7 +16,7 @@
                     variant="outlined"
                     prominent
                     class="mt-10"
-                ></v-alert>
+                />
 
                 <template v-else key="content">
                     <div class="text-center mt-4 mb-8">
@@ -40,9 +40,8 @@
                                                 ? 'success'
                                                 : undefined
                                     "
-                                >
-                                </v-stepper-item>
-                                <v-divider v-if="index < steps.length - 1"></v-divider>
+                                />
+                                <v-divider v-if="index < steps.length - 1" />
                             </template>
                         </v-stepper-header>
                     </v-stepper>
@@ -57,13 +56,12 @@
                             </v-card-title>
 
                             <v-list class="py-0">
-                                <v-list-item :title="restaurant.address || '地址未提供'" subtitle="餐廳地址">
-                                </v-list-item>
-                                <v-divider inset></v-divider>
-                                <v-list-item :title="restaurant.phone" subtitle="餐廳電話"> </v-list-item>
+                                <v-list-item :title="restaurant.address || '地址未提供'" subtitle="餐廳地址" />
+                                <v-divider inset />
+                                <v-list-item :title="restaurant.phone" subtitle="餐廳電話" />
                             </v-list>
 
-                            <v-divider></v-divider>
+                            <v-divider />
 
                             <v-card-text>
                                 <h3 class="text-subtitle-1 font-weight-bold mb-2">取餐品項：</h3>
@@ -78,7 +76,7 @@
                                             <div class="text-body-1">x {{ item.quantity }}</div>
                                         </v-col>
                                     </v-row>
-                                    <v-divider v-if="itemIndex < restaurant.items.length - 1"></v-divider>
+                                    <v-divider v-if="itemIndex < restaurant.items.length - 1" />
                                 </div>
                             </v-card-text>
                         </v-card>
@@ -88,27 +86,26 @@
                             <v-icon color="success" start>mdi-map-marker-outline</v-icon>
                             <span class="text-h6 font-weight-bold">配送資訊</span>
                         </v-card-title>
-                        <v-divider></v-divider>
+                        <v-divider />
                         <v-list class="py-0">
-                            <v-list-item :title="orderData.deliveryInfo.address" subtitle="外送地址"> </v-list-item>
-                            <v-divider inset></v-divider>
-                            <v-list-item :title="orderData.deliveryInfo.contactName" subtitle="顧客暱稱"></v-list-item>
-                            <v-divider inset></v-divider>
-                            <v-list-item :title="orderData.deliveryInfo.contactPhone" subtitle="顧客電話">
-                            </v-list-item>
+                            <v-list-item :title="orderData.deliveryInfo.address" subtitle="外送地址" />
+                            <v-divider inset />
+                            <v-list-item :title="orderData.deliveryInfo.contactName" subtitle="顧客暱稱" />
+                            <v-divider inset />
+                            <v-list-item :title="orderData.deliveryInfo.contactPhone" subtitle="顧客電話" />
                             <template v-if="orderData.deliveryStatus === 'on_the_way'">
-                                <v-divider inset></v-divider>
+                                <v-divider inset />
                                 <v-list-item
                                     :title="etaTimeString || (isEtaLoading ? '計算中...' : '無法取得')"
                                     subtitle="預計送達時間"
-                                ></v-list-item>
+                                />
                             </template>
-                            <v-divider v-if="orderData.deliveryInfo.note" inset></v-divider>
+                            <v-divider v-if="orderData.deliveryInfo.note" inset />
                             <v-list-item
                                 v-if="orderData.deliveryInfo.note"
                                 :title="orderData.deliveryInfo.note"
                                 subtitle="顧客備註"
-                            ></v-list-item>
+                            />
                         </v-list>
                     </v-card>
                     <v-card flat border rounded="lg" class="mb-6">
@@ -165,18 +162,14 @@
                                 {{ dialogText }}
                             </v-card-text>
                             <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                    text="取消"
-                                    :disabled="isUpdating"
-                                    @click="isConfirmDialogVisible = false"
-                                ></v-btn>
+                                <v-spacer />
+                                <v-btn text="取消" :disabled="isUpdating" @click="isConfirmDialogVisible = false" />
                                 <v-btn
                                     :color="actionButtonColor"
                                     text="確認"
                                     :loading="isUpdating"
                                     @click="updateDeliveryStatus"
-                                ></v-btn>
+                                />
                             </v-card-actions>
                         </v-card>
                     </v-dialog>
