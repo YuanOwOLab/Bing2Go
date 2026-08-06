@@ -15,7 +15,7 @@ type ChainMethods = "populate" | "select" | "sort" | "skip" | "limit" | "lean";
  */
 export function createChainedQueryMock<T extends object | null>(
     returnValue: T,
-    resolveMethods: ChainMethods[] = ["lean"]
+    resolveMethods: ChainMethods[] = ["lean"],
 ) {
     // 定義理想的呼叫順序
     const idealOrder: ChainMethods[] = ["populate", "select", "sort", "skip", "limit", "lean"];

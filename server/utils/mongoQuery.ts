@@ -24,7 +24,7 @@ export function buildRestaurantSearchQuery(
     options?: {
         maxTerms?: number;
         maxTermLength?: number;
-    }
+    },
 ): FilterQuery<IRestaurant> {
     const MAX_TERMS = options?.maxTerms ?? 5;
     const MAX_TERM_LEN = options?.maxTermLength ?? 50;
@@ -76,7 +76,7 @@ export function buildRestaurantSearchQuery(
                     { tags: { $regex: re } },
                     { phone: { $regex: re } },
                 ];
-            })
+            }),
         );
 
     return { $or: orClauses };

@@ -1,41 +1,38 @@
 <template>
-  <!-- 一定要用 ClientOnly，避免 SSR 時碰到 window / document -->
-  <ClientOnly>
-    <div
-      id="simple-map"
-      class="map-container"
-    ></div>
-  </ClientOnly>
+    <!-- 一定要用 ClientOnly，避免 SSR 時碰到 window / document -->
+    <ClientOnly>
+        <div id="simple-map" class="map-container"></div>
+    </ClientOnly>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted } from "vue";
 
 onMounted(async () => {
-  const L = await import('leaflet')
+    const L = await import("leaflet");
 
-  // 設定一個預設中心點：這裡為海洋大學
-  const center: [number, number] = [25.15081780087686, 121.77303369797978]
-  const zoom = 15
+    // 設定一個預設中心點：這裡為海洋大學
+    const center: [number, number] = [25.15081780087686, 121.77303369797978];
+    const zoom = 15;
 
-  const map = L.map('simple-map').setView(center, zoom)
+    const map = L.map("simple-map").setView(center, zoom);
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors',
-  }).addTo(map)
-})
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap contributors",
+    }).addTo(map);
+});
 </script>
 
 <style scoped>
 .map-container {
-  width: 100%;
-  height: 300px;
+    width: 100%;
+    height: 300px;
 }
 
 @media (min-width: 600px) {
-  .map-container {
-    height: 400px;
-  }
+    .map-container {
+        height: 400px;
+    }
 }
 </style>

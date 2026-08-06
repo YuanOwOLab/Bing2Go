@@ -200,7 +200,7 @@ export async function searchRestaurants(search: string, options?: QueryPaginatio
 export async function searchRestaurantsNearByAddress(
     address: string,
     search: string,
-    options?: QueryPaginationOptions & { maxDistance?: number; activeOnly?: boolean }
+    options?: QueryPaginationOptions & { maxDistance?: number; activeOnly?: boolean },
 ) {
     const MAX_TERMS = 5;
     const MAX_TERM_LENGTH = 50;

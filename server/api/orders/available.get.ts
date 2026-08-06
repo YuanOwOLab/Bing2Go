@@ -194,7 +194,7 @@ export default defineEventHandler(async (event) => {
             skip,
             sortBy: sortBy as "createdAt" | "deliveryFee" | "arriveTime" | "distance",
             order: order === "asc" ? "asc" : "desc",
-        }
+        },
     );
 
     return {

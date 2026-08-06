@@ -19,7 +19,7 @@ const NTOULocationSchema = new mongoose.Schema<NTOULocationDocument>(
         lat: { type: Number, required: true },
         lon: { type: Number, required: true },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

@@ -19,7 +19,7 @@ const KeelongAddressMapSchema = new mongoose.Schema<KeelongAddressMapDocument>(
         lat: { type: Number, required: true },
         lon: { type: Number, required: true },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

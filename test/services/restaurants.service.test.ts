@@ -104,7 +104,7 @@ describe("restaurants.service - 餐廳相關功能", () => {
             expect(mocks.findByIdAndUpdate).toHaveBeenCalledWith(
                 "r3",
                 { address: "addr", locationGeo: { coordinates: [1, 2] } },
-                { new: true, runValidators: true }
+                { new: true, runValidators: true },
             );
             expect(result).toStrictEqual(restaurant); // Mock 不會更新 address 欄位
         });

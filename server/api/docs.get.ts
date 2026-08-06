@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-    const url = `/api/swagger.json`
+    const url = `/api/swagger.json`;
     // Use CDN for swagger-ui assets to avoid serving static files from the server
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -21,6 +21,6 @@ export default defineEventHandler(async (event) => {
     }
   </script>
 </body>
-</html>`
-    return html
-})
+</html>`;
+    return html;
+});

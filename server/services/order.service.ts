@@ -78,7 +78,7 @@ export async function createOrder(userId: ObjectIdLike, OrderInfo: OrderInfo) {
 
     const cart = await Cart.findOne({ user: userId }).populate(
         "items.restaurantId",
-        "name phone menu address locationGeo"
+        "name phone menu address locationGeo",
     );
     if (!cart || cart.items.length === 0) {
         throw createError({ statusCode: 400, message: "購物車為空，無法建立訂單" });
@@ -135,7 +135,7 @@ export async function createOrder(userId: ObjectIdLike, OrderInfo: OrderInfo) {
                     location: restaurantLocation || undefined,
                 },
             };
-        })
+        }),
     );
 
     const newOrder = new Order({
@@ -224,7 +224,7 @@ export async function getOrderById(orderId: ObjectIdLike) {
 export async function getOrdersByUserRole(
     userId: ObjectIdLike,
     role: "customer" | "delivery",
-    options?: { limit?: number; skip?: number }
+    options?: { limit?: number; skip?: number },
 ): Promise<IOrder[]> {
     const limit = options?.limit ?? 50;
     const skip = options?.skip ?? 0;
@@ -273,7 +273,7 @@ export async function getAvailableOrdersForDeliveryPerson(
         skip?: number;
         sortBy?: "createdAt" | "deliveryFee" | "arriveTime" | "distance";
         order?: "asc" | "desc";
-    }
+    },
 ) {
     const limit = options?.limit ?? 50;
     const skip = options?.skip ?? 0;
@@ -380,7 +380,7 @@ export async function getOrdersForAdmin(
         skip?: number;
         sortBy?: "createdAt" | "total" | "deliveryFee";
         order?: "asc" | "desc";
-    }
+    },
 ) {
     const limit = options?.limit ?? 50;
     const skip = options?.skip ?? 0;

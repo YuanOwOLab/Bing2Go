@@ -205,7 +205,6 @@ describe("cart.service", () => {
         });
 
         it("當計算距離和配送費用時，應該正確計算並返回結果", () => {
-            
             haversineDistanceMock.mockReturnValueOnce(1000).mockReturnValueOnce(3000);
             calculateDeliveryFeeMock.mockReturnValue(50);
 

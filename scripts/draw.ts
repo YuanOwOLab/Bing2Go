@@ -18,7 +18,7 @@ const generateImage = async () => {
                         `<svg width="300" height="100">
                             <text x="50%" y="50%" font-size="90" text-anchor="middle"
                              fill="black" dy=".35em" font-family="monospace">0aBC</text>
-                        </svg>`
+                        </svg>`,
                     ),
                     top: 0,
                     left: 0,

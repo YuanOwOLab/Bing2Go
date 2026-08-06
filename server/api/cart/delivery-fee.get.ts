@@ -108,7 +108,7 @@ export default defineEventHandler(async (event) => {
                       };
                   }
                   return null;
-                })
+              })
               .filter((item): item is { id?: string; address?: string; locationGeo?: unknown } => Boolean(item))
         : [];
 
@@ -129,7 +129,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const restaurantCoordinates: [number, number][] = [];
-      for (const input of restaurantInputs) {
+    for (const input of restaurantInputs) {
         let geocode = input.locationGeo;
         if (!validateGeocode(geocode) && input.id) {
             const restaurant = await getRestaurantById(input.id);

@@ -9,9 +9,15 @@
                         :key="msg.id"
                         :class="['message', msg.senderRole === userStore.currentRole ? 'left' : 'right']"
                     >
-                        <p class="message-header" :class="msg.senderRole === userStore.currentRole ? 'align-left' : 'align-right'">
-                            <span class="sender-role" :class="msg.senderRole === userStore.currentRole ? 'left' : 'right'">
-                                {{ msg.senderRole === 'customer' ? '顧客' : '外送員' }}
+                        <p
+                            class="message-header"
+                            :class="msg.senderRole === userStore.currentRole ? 'align-left' : 'align-right'"
+                        >
+                            <span
+                                class="sender-role"
+                                :class="msg.senderRole === userStore.currentRole ? 'left' : 'right'"
+                            >
+                                {{ msg.senderRole === "customer" ? "顧客" : "外送員" }}
                             </span>
                             <strong class="sender-name">{{ getSenderName(msg) }}</strong>
                             <span class="timestamp">{{ formatTimestamp(msg.timestamp) }}</span>
@@ -28,7 +34,7 @@
                         variant="solo"
                         prepend-inner-icon="mdi-message-text-outline"
                         clearable
-                        style="max-width: 100%;"
+                        style="max-width: 100%"
                         @keydown.enter.prevent="handleSend"
                         @compositionstart="isComposing = true"
                         @compositionend="isComposing = false"
@@ -196,12 +202,16 @@ onMounted(() => {
 });
 
 // 監聽通知狀態，若在頁面中收到通知（訊息或狀態更新）則立即清除
-watch(() => notificationStore.getNotification(orderId), (n) => {
-    // 增加路由判斷，避免 keep-alive 導致在其他頁面時誤清除通知
-    if ((n.hasMessage || n.hasStatusUpdate) && router.currentRoute.value.path.includes(`/chat/${orderId}`)) {
-        clearNotification();
-    }
-}, { deep: true });
+watch(
+    () => notificationStore.getNotification(orderId),
+    (n) => {
+        // 增加路由判斷，避免 keep-alive 導致在其他頁面時誤清除通知
+        if ((n.hasMessage || n.hasStatusUpdate) && router.currentRoute.value.path.includes(`/chat/${orderId}`)) {
+            clearNotification();
+        }
+    },
+    { deep: true },
+);
 
 const { data: orderData } = await useFetch(`/api/orders/${orderId}`, {
     transform: (response: any) => response.data,
@@ -244,13 +254,15 @@ const { data: history } = await useFetch(`/api/orders/${orderId}/chats`, {
     headers: { Authorization: `Bearer ${userStore.token}` },
 });
 
-messages.value = history.value.map((msg: any) => ({
-    id: msg._id,
-    sender: msg.sender._id,
-    senderRole: msg.senderRole,
-    content: msg.content,
-    timestamp: msg.timestamp,
-})).reverse();
+messages.value = history.value
+    .map((msg: any) => ({
+        id: msg._id,
+        sender: msg.sender._id,
+        senderRole: msg.senderRole,
+        content: msg.content,
+        timestamp: msg.timestamp,
+    }))
+    .reverse();
 
 // 建立聊天室連線
 const { send, disconnect } = useChat(orderId, messages);
@@ -266,11 +278,11 @@ const messagesContainer = ref<HTMLElement | null>(null);
 
 // 捲到最底部
 function scrollToBottom() {
-        nextTick(() => {
-            if (messagesContainer.value) {
-                messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
-            }
-        });
+    nextTick(() => {
+        if (messagesContainer.value) {
+            messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+        }
+    });
 }
 
 // 載入後捲到底
@@ -285,9 +297,12 @@ onActivated(() => {
 });
 
 // 訊息數量改變（歷史載入、收到新訊息）時捲到底
-watch(() => messages.value.length, () => {
-    scrollToBottom();
-});
+watch(
+    () => messages.value.length,
+    () => {
+        scrollToBottom();
+    },
+);
 
 // 發送訊息
 function handleSend() {
@@ -310,4 +325,3 @@ onUnmounted(() => {
     disconnect();
 });
 </script>
-
