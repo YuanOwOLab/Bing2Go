@@ -79,7 +79,7 @@ export async function getCartByUserId(userId: ObjectIdLike): Promise<ICartRespon
 
         if (!restaurant || !menuItem) {
             console.warn(
-                `Warning: Missing restaurant or menu item for cart item. Restaurant ID: ${it.restaurantId}, Menu Item ID: ${it.menuItemId}`
+                `Warning: Missing restaurant or menu item for cart item. Restaurant ID: ${it.restaurantId}, Menu Item ID: ${it.menuItemId}`,
             );
         }
 

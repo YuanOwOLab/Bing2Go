@@ -1,11 +1,11 @@
-import { ref, watch, onMounted, type Ref } from 'vue';
+import { ref, watch, onMounted, type Ref } from "vue";
 
 export function useImageHoverColor(imageUrl: Ref<string | undefined | null>) {
-    const hoverBgColor = ref('#FFFFFF');
+    const hoverBgColor = ref("#FFFFFF");
 
     const updateHoverColor = () => {
         if (!imageUrl.value) {
-            hoverBgColor.value = '#FFFFFF';
+            hoverBgColor.value = "#FFFFFF";
             return;
         }
 
@@ -14,8 +14,8 @@ export function useImageHoverColor(imageUrl: Ref<string | undefined | null>) {
         img.src = imageUrl.value;
 
         img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
             if (!ctx) return;
 
             const size = 50;
@@ -26,8 +26,13 @@ export function useImageHoverColor(imageUrl: Ref<string | undefined | null>) {
             try {
                 const data = ctx.getImageData(0, 0, size, size).data;
 
-                const buckets: { r: number; g: number; b: number; count: number }[] = Array.from({ length: 12 }, () => ({ r: 0, g: 0, b: 0, count: 0 }));
-                let totalR = 0, totalG = 0, totalB = 0;
+                const buckets: { r: number; g: number; b: number; count: number }[] = Array.from(
+                    { length: 12 },
+                    () => ({ r: 0, g: 0, b: 0, count: 0 }),
+                );
+                let totalR = 0,
+                    totalG = 0,
+                    totalB = 0;
 
                 for (let i = 0; i < data.length; i += 4) {
                     const r = data[i];
@@ -79,13 +84,13 @@ export function useImageHoverColor(imageUrl: Ref<string | undefined | null>) {
 
                 hoverBgColor.value = `rgb(${newR}, ${newG}, ${newB})`;
             } catch (e) {
-                console.warn('無法提取圖片顏色', e);
-                hoverBgColor.value = '#FFFFFF';
+                console.warn("無法提取圖片顏色", e);
+                hoverBgColor.value = "#FFFFFF";
             }
         };
         img.onerror = () => {
-            hoverBgColor.value = '#FFFFFF';
-        }
+            hoverBgColor.value = "#FFFFFF";
+        };
     };
 
     onMounted(() => {

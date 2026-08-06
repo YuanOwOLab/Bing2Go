@@ -340,7 +340,7 @@ describe("Order Service - createOrder", () => {
 
         await expect(createOrder("user-1", { deliveryInfo: {}, arriveTime: new Date() } as any)).rejects.toHaveProperty(
             "statusCode",
-            400
+            400,
         );
     });
 
@@ -351,7 +351,7 @@ describe("Order Service - createOrder", () => {
 
         await expect(createOrder("user-1", { deliveryInfo: {}, arriveTime: new Date() } as any)).rejects.toHaveProperty(
             "statusCode",
-            400
+            400,
         );
     });
 });

@@ -19,7 +19,7 @@ async function updateRestaurantRating(restaurantId: mongoose.Types.ObjectId) {
 
     const averageRating = stats.length > 0 ? stats[0].averageRating : 0;
 
-    // Round to 1 decimal place if needed, or keep as float. 
+    // Round to 1 decimal place if needed, or keep as float.
     // Usually ratings are displayed with 1 decimal, but storing more precision is fine.
     // Let's keep it as is from the service logic.
 

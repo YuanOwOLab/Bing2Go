@@ -1,21 +1,21 @@
-import { onBeforeUnmount, ref, type Ref } from 'vue';
+import { onBeforeUnmount, ref, type Ref } from "vue";
 
 export function createCartImageAnimator(cartIconEl: Ref<HTMLElement | null>) {
     const floatingImages = ref<HTMLImageElement[]>([]);
 
     const createFloatingImage = (imageSrc: string) => {
-        const img = document.createElement('img');
+        const img = document.createElement("img");
         img.src = imageSrc;
-        img.style.position = 'fixed';
-        img.style.width = '80px';
-        img.style.height = '80px';
-        img.style.objectFit = 'contain';
-        img.style.objectPosition = 'center';
-        img.style.borderRadius = '12px';
-        img.style.zIndex = '9999';
-        img.style.pointerEvents = 'none';
-        img.style.opacity = '0.85';
-        img.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
+        img.style.position = "fixed";
+        img.style.width = "80px";
+        img.style.height = "80px";
+        img.style.objectFit = "contain";
+        img.style.objectPosition = "center";
+        img.style.borderRadius = "12px";
+        img.style.zIndex = "9999";
+        img.style.pointerEvents = "none";
+        img.style.opacity = "0.85";
+        img.style.transition = "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease";
 
         // 隨機位置，避免貼邊
         const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -42,7 +42,7 @@ export function createCartImageAnimator(cartIconEl: Ref<HTMLElement | null>) {
         const cartCenterX = cartRect.left + cartRect.width / 2;
         const cartCenterY = cartRect.top + cartRect.height / 2;
 
-        floatingImages.value.forEach(img => {
+        floatingImages.value.forEach((img) => {
             const imgRect = img.getBoundingClientRect();
             const imgCenterX = imgRect.left + imgRect.width / 2;
             const imgCenterY = imgRect.top + imgRect.height / 2;
@@ -52,20 +52,20 @@ export function createCartImageAnimator(cartIconEl: Ref<HTMLElement | null>) {
 
             requestAnimationFrame(() => {
                 img.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${finalScale}) rotate(720deg)`;
-                img.style.opacity = '0.2';
+                img.style.opacity = "0.2";
             });
         });
 
         setTimeout(() => {
-            floatingImages.value.forEach(img => img.remove());
+            floatingImages.value.forEach((img) => img.remove());
             floatingImages.value = [];
-            cartEl.classList.add('cart-shake');
-            setTimeout(() => cartEl.classList.remove('cart-shake'), 400);
+            cartEl.classList.add("cart-shake");
+            setTimeout(() => cartEl.classList.remove("cart-shake"), 400);
         }, 650);
     };
 
     const clearFloatingImages = () => {
-        floatingImages.value.forEach(img => img.remove());
+        floatingImages.value.forEach((img) => img.remove());
         floatingImages.value = [];
     };
 
@@ -87,20 +87,20 @@ export function createCartImageAnimator(cartIconEl: Ref<HTMLElement | null>) {
             const left0 = originRect.left + (originRect.width - w0) / 2;
             const top0 = originRect.top + (originRect.height - h0) / 2;
 
-            const imgEl = document.createElement('img');
+            const imgEl = document.createElement("img");
             imgEl.src = imageSrc;
-            imgEl.style.position = 'fixed';
+            imgEl.style.position = "fixed";
             imgEl.style.left = `${left0}px`;
             imgEl.style.top = `${top0}px`;
             imgEl.style.width = `${w0}px`;
             imgEl.style.height = `${h0}px`;
-            imgEl.style.objectFit = 'contain';
-            imgEl.style.objectPosition = 'center';
-            imgEl.style.borderRadius = '0';
-            imgEl.style.zIndex = '9999';
-            imgEl.style.pointerEvents = 'none';
-            imgEl.style.transform = 'translate3d(0,0,0) scale(1)';
-            imgEl.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease';
+            imgEl.style.objectFit = "contain";
+            imgEl.style.objectPosition = "center";
+            imgEl.style.borderRadius = "0";
+            imgEl.style.zIndex = "9999";
+            imgEl.style.pointerEvents = "none";
+            imgEl.style.transform = "translate3d(0,0,0) scale(1)";
+            imgEl.style.transition = "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease";
             document.body.appendChild(imgEl);
 
             const imgCenterX = left0 + w0 / 2;
@@ -113,13 +113,13 @@ export function createCartImageAnimator(cartIconEl: Ref<HTMLElement | null>) {
 
             requestAnimationFrame(() => {
                 imgEl.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${finalScale}) rotate(720deg)`;
-                imgEl.style.opacity = '0.2';
+                imgEl.style.opacity = "0.2";
             });
 
             setTimeout(() => {
                 imgEl.remove();
-                cartEl.classList.add('cart-shake');
-                setTimeout(() => cartEl.classList.remove('cart-shake'), 400);
+                cartEl.classList.add("cart-shake");
+                setTimeout(() => cartEl.classList.remove("cart-shake"), 400);
             }, 650);
         };
 

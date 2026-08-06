@@ -19,7 +19,7 @@ import mongoose from "mongoose";
 export async function getReviewsByRestaurantId(
     restaurantId: ObjectIdLike,
     sort: "newest" | "highest" | "lowest" = "newest",
-    options: QueryPaginationOptions
+    options: QueryPaginationOptions,
 ) {
     const SORT_OPTIONS: { [key: string]: Record<string, 1 | -1> } = {
         newest: { createdAt: -1 },

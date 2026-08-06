@@ -1,5 +1,5 @@
-import { useUserStore } from '@stores/user';
-import { defineStore } from 'pinia';
+import { useUserStore } from "@stores/user";
+import { defineStore } from "pinia";
 
 export interface CartMenuItem {
     menuItemId: string;
@@ -25,15 +25,15 @@ interface CartState {
     arriveTime: Date;
 }
 
-export const useCartStore = defineStore('cart', {
+export const useCartStore = defineStore("cart", {
     state: (): CartState => ({
         items: [],
-        deliveryAddress: '',
-        phoneNumber: '',
-        receiveName: '',
+        deliveryAddress: "",
+        phoneNumber: "",
+        receiveName: "",
         deliveryFee: 30,
         arriveTime: new Date(Date.now() + 30 * 60 * 1000),
-        note: '',
+        note: "",
     }),
 
     actions: {
@@ -41,22 +41,21 @@ export const useCartStore = defineStore('cart', {
         async fetchCart() {
             const userStore = useUserStore();
             if (!userStore.token) {
-                console.log('User not logged in, skipping cart fetch.');
+                console.log("User not logged in, skipping cart fetch.");
                 return;
             }
             try {
-                const { data } = await useFetch<{ success: boolean, data: { items: CartItem[] } }>('/api/cart', {
+                const { data } = await useFetch<{ success: boolean; data: { items: CartItem[] } }>("/api/cart", {
                     headers: {
-                        'Authorization': `Bearer ${userStore.token}`,
-                        'Accept': 'application/json',
+                        Authorization: `Bearer ${userStore.token}`,
+                        Accept: "application/json",
                     },
                 });
                 if (data.value && data.value.data && data.value.data.items) {
                     this.items = data.value.data.items;
                 }
-
             } catch (err) {
-                console.error('Error fetching cart:', err);
+                console.error("Error fetching cart:", err);
             }
         },
 
@@ -64,10 +63,10 @@ export const useCartStore = defineStore('cart', {
         async syncCartWithDB() {
             const userStore = useUserStore();
             if (!userStore.token) {
-                console.log('User not logged in, skipping cart sync.');
+                console.log("User not logged in, skipping cart sync.");
                 return;
             }
-            const apiItems = this.items.map(item => ({
+            const apiItems = this.items.map((item) => ({
                 restaurantId: item.restaurantId,
                 restaurantName: item.restaurantName,
                 quantity: item.quantity,
@@ -78,24 +77,24 @@ export const useCartStore = defineStore('cart', {
                 info: item.info,
             }));
             try {
-                await useFetch('/api/cart/items', {
-                    method: 'POST',
+                await useFetch("/api/cart/items", {
+                    method: "POST",
                     headers: {
-                        'Authorization': `Bearer ${userStore.token}`,
-                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userStore.token}`,
+                        "Content-Type": "application/json",
                     },
                     body: {
                         items: apiItems,
                     },
                 });
             } catch (err) {
-                console.error('Error syncing cart with DB:', err);
+                console.error("Error syncing cart with DB:", err);
             }
         },
 
         // 新增品項到購物車
-        addItem(newItem: CartMenuItem, quantity: number, restaurant: { id: string, name: string }) {
-            const existingItem = this.items.find(item => item.menuItemId === newItem.menuItemId);
+        addItem(newItem: CartMenuItem, quantity: number, restaurant: { id: string; name: string }) {
+            const existingItem = this.items.find((item) => item.menuItemId === newItem.menuItemId);
             if (existingItem) {
                 existingItem.quantity += quantity;
             } else {
@@ -106,11 +105,11 @@ export const useCartStore = defineStore('cart', {
                     restaurantName: restaurant.name,
                 });
             }
-            this.syncCartWithDB().catch(err => console.error('Error syncing cart with DB:', err));
+            this.syncCartWithDB().catch((err) => console.error("Error syncing cart with DB:", err));
         },
 
         // 設定外送資訊
-        setDeliveryDetails(details: { address: string, phone: string, receiveName: string, note: string }) {
+        setDeliveryDetails(details: { address: string; phone: string; receiveName: string; note: string }) {
             this.deliveryAddress = details.address;
             this.phoneNumber = details.phone;
             this.receiveName = details.receiveName;
@@ -126,36 +125,36 @@ export const useCartStore = defineStore('cart', {
 
         // 更新品項數量
         updateItemQuantity(itemId: string, newQuantity: number) {
-            const item = this.items.find(item => item.menuItemId === itemId);
+            const item = this.items.find((item) => item.menuItemId === itemId);
             if (item) {
                 if (newQuantity > 0) {
                     item.quantity = newQuantity;
                 } else {
                     // 如果數量小於等於 0，就移除該品項
-                    const itemIndex = this.items.findIndex(i => i.menuItemId === itemId);
+                    const itemIndex = this.items.findIndex((i) => i.menuItemId === itemId);
                     if (itemIndex > -1) {
                         this.items.splice(itemIndex, 1);
                     }
                 }
-                this.syncCartWithDB().catch(err => console.error('Error syncing cart with DB:', err));
+                this.syncCartWithDB().catch((err) => console.error("Error syncing cart with DB:", err));
             }
         },
 
         // 移除某餐廳的所有品項
         removeRestaurantItems(restaurantName: string) {
             const initialLength = this.items.length;
-            this.items = this.items.filter(item => item.restaurantName !== restaurantName);
+            this.items = this.items.filter((item) => item.restaurantName !== restaurantName);
             if (this.items.length < initialLength) {
-                this.syncCartWithDB().catch(err => console.error('Error syncing cart with DB:', err));
+                this.syncCartWithDB().catch((err) => console.error("Error syncing cart with DB:", err));
             }
         },
 
         // 移除單一品項
         removeItem(itemId: string) {
             const initialLength = this.items.length;
-            this.items = this.items.filter(item => item.menuItemId !== itemId);
+            this.items = this.items.filter((item) => item.menuItemId !== itemId);
             if (this.items.length < initialLength) {
-                this.syncCartWithDB().catch(err => console.error('Error syncing cart with DB:', err));
+                this.syncCartWithDB().catch((err) => console.error("Error syncing cart with DB:", err));
             }
         },
 
@@ -165,10 +164,11 @@ export const useCartStore = defineStore('cart', {
             if (this.items.length > 0) {
                 this.items = [];
                 this.setDeliveryDetails({
-                    address: userStore.info?.address || '',
-                    phone: userStore.info?.phone || '',
-                    receiveName: userStore.info?.name || '',
-                    note: '',});
+                    address: userStore.info?.address || "",
+                    phone: userStore.info?.phone || "",
+                    receiveName: userStore.info?.name || "",
+                    note: "",
+                });
                 // 後端才做清DB
                 // this.syncCartWithDB().catch(err => console.error('Error syncing cart with DB:', err));
             }
@@ -181,15 +181,15 @@ export const useCartStore = defineStore('cart', {
                 note: this.note,
                 deliveryFee: this.deliveryFee,
             };
-            localStorage.setItem('cartDeliveryInfo', JSON.stringify(deliveryInfo))
+            localStorage.setItem("cartDeliveryInfo", JSON.stringify(deliveryInfo));
         },
         loadFromStorage() {
-            const data = localStorage.getItem('cartDeliveryInfo')
-            if (data) this.$patch(JSON.parse(data))
+            const data = localStorage.getItem("cartDeliveryInfo");
+            if (data) this.$patch(JSON.parse(data));
         },
         initialize() {
-            this.loadFromStorage()
-        }
+            this.loadFromStorage();
+        },
     },
     getters: {
         // 商品總數量
@@ -198,7 +198,7 @@ export const useCartStore = defineStore('cart', {
         },
         // 計算總金額
         totalPrice(state): number {
-            return state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+            return state.items.reduce((total, item) => total + item.price * item.quantity, 0);
         },
     },
 });
