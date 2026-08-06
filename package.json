@@ -13,6 +13,8 @@
         "dev": "nuxt dev",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
@@ -41,6 +43,7 @@
         "vuetify": "^3.10.5"
     },
     "devDependencies": {
+        "@nuxt/eslint": "^1.16.0",
         "@types/jsonwebtoken": "^9.0.10",
         "@types/lodash-es": "^4.17.12",
         "@types/node": "^24.7.2",
@@ -49,6 +52,7 @@
         "@types/swagger-ui-express": "^4.1.8",
         "@vue/test-utils": "^2.4.6",
         "dotenv": "^17.2.3",
+        "eslint": "^10.8.0",
         "happy-dom": "^20.0.11",
         "prettier": "^3.9.6",
         "tsx": "^4.20.6",
