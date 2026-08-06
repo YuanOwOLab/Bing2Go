@@ -33,67 +33,75 @@ jobs:
                   ACTOR: ${{ github.actor }}
                   AVATAR_URL: https://github.com/${{ github.actor }}.png
               run: |
+                  EVENT_PATH="$GITHUB_EVENT_PATH"
+
+                  json_get() {
+                    jq -r "$1 // \"\"" "$EVENT_PATH"
+                  }
+
                   # Detect event type and construct embed content
                   case "$EVENT" in
 
                     push)
                       COLOR=3066993   # green
                       TITLE="🚀 Push to ${GITHUB_REF##*/}"
-                      DESC="${{ github.event.head_commit.message }}"
-                      URL="${{ github.event.head_commit.url }}"
-                      FOOT="commit ${{ github.event.head_commit.id }}"
+                      DESC="$(json_get '.head_commit.message')"
+                      URL="$(json_get '.head_commit.url')"
+                      FOOT="commit $(json_get '.head_commit.id')"
                       ;;
 
                     pull_request)
-                      if [ "${{ github.event.action }}" = "closed" ] && [ "${{ github.event.pull_request.merged }}" = "true" ]; then
+                      PR_ACTION="$(json_get '.action')"
+                      PR_MERGED="$(json_get '.pull_request.merged')"
+                      if [ "$PR_ACTION" = "closed" ] && [ "$PR_MERGED" = "true" ]; then
                         COLOR=10181046  # purple
                         TITLE="🟣 Pull Request Merged"
                       else
-                        case "${{ github.event.action }}" in
+                        case "$PR_ACTION" in
                           opened)     COLOR=3066993;  TITLE="🟢 PR Opened" ;;
                           closed)     COLOR=15158332; TITLE="🔴 PR Closed" ;;
                           reopened)   COLOR=15844367; TITLE="🟡 PR Reopened" ;;
                           synchronize) COLOR=3447003; TITLE="🔄 PR Updated" ;;
                         esac
                       fi
-                      TITLE="$TITLE: ${{ github.event.pull_request.title }}"
-                      DESC="${{ github.event.pull_request.body }}"
-                      URL="${{ github.event.pull_request.html_url }}"
-                      FOOT="Pull Request #${{ github.event.pull_request.number }}"
+                      TITLE="$TITLE: $(json_get '.pull_request.title')"
+                      DESC="$(json_get '.pull_request.body')"
+                      URL="$(json_get '.pull_request.html_url')"
+                      FOOT="Pull Request #$(json_get '.pull_request.number')"
                       ;;
 
                     pull_request_review)
                       COLOR=3447003  # blue
-                      TITLE="📝 PR Review: ${{ github.event.pull_request.title }}"
-                      DESC="${{ github.event.review.body }}"
-                      URL="${{ github.event.review.html_url }}"
-                      FOOT="Pull Request #${{ github.event.pull_request.number }}"
+                      TITLE="📝 PR Review: $(json_get '.pull_request.title')"
+                      DESC="$(json_get '.review.body')"
+                      URL="$(json_get '.review.html_url')"
+                      FOOT="Pull Request #$(json_get '.pull_request.number')"
                       ;;
 
                     issues)
-                      case "${{ github.event.action }}" in
+                      case "$(json_get '.action')" in
                         opened) COLOR=3066993; TITLE="🟢 Issue Opened" ;;
                         closed) COLOR=15158332; TITLE="🔴 Issue Closed" ;;
                         reopened) COLOR=15844367; TITLE="🟡 Issue Reopened" ;;
                       esac
-                      TITLE="$TITLE: ${{ github.event.issue.title }}"
-                      DESC=" ${{ github.event.issue.body }}"
-                      URL="${{ github.event.issue.html_url }}"
-                      FOOT="Issue #${{ github.event.issue.number }}"
+                      TITLE="$TITLE: $(json_get '.issue.title')"
+                      DESC="$(json_get '.issue.body')"
+                      URL="$(json_get '.issue.html_url')"
+                      FOOT="Issue #$(json_get '.issue.number')"
                       ;;
 
                     issue_comment)
                       COLOR=3447003
-                      TITLE="💬 New Comment on Issue#${{ github.event.issue.number }}"
-                      DESC="${{ github.event.comment.body }}"
-                      URL="${{ github.event.comment.html_url }}"
-                      FOOT="Issue #${{ github.event.issue.number }}"
+                      TITLE="💬 New Comment on Issue#$(json_get '.issue.number')"
+                      DESC="$(json_get '.comment.body')"
+                      URL="$(json_get '.comment.html_url')"
+                      FOOT="Issue #$(json_get '.issue.number')"
                       ;;
 
                     watch)
                       COLOR=15844367
                       TITLE="⭐ Repo Starred"
-                      DESC="**User:** ${{ github.actor }}"
+                      DESC="**User:** $ACTOR"
                       URL=""
                       FOOT="${GITHUB_REPOSITORY}"
                       ;;
@@ -101,7 +109,7 @@ jobs:
                     fork)
                       COLOR=15105570
                       TITLE="🍴 Repo Forked"
-                      DESC="**User:** ${{ github.actor }}"
+                      DESC="**User:** $ACTOR"
                       URL=""
                       FOOT="${GITHUB_REPOSITORY}"
                       ;;
