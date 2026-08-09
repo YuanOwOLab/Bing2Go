@@ -6,7 +6,11 @@ export default defineNuxtConfig({
     pages: true,
     ssr: false,
     devtools: { enabled: true },
-    modules: ["@nuxt/eslint", "@pinia/nuxt", "@nuxtjs/i18n"],
+    modules: [
+        ...(process.env.NODE_ENV === "production" ? [] : ["@nuxt/eslint"]), // Only enable eslint in development mode
+        "@pinia/nuxt",
+        "@nuxtjs/i18n",
+    ],
     css: ["vuetify/styles", "@mdi/font/css/materialdesignicons.min.css", "leaflet/dist/leaflet.css"],
     i18n: {
         fallbackLocale: "zh",
