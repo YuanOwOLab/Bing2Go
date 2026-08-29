@@ -109,7 +109,7 @@ const orderSchema = new Schema<OrderDocument>(
             default: "preparing",
         },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

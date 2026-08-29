@@ -171,7 +171,7 @@ export async function searchUsers(
     options: QueryPaginationOptions & {
         role?: UserRole;
         query?: string;
-    }
+    },
 ) {
     const limit = options.limit ?? 50;
     const skip = options.skip ?? 0;

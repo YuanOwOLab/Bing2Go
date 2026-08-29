@@ -31,7 +31,7 @@ export function parseFormField(field: string): any {
  */
 export async function parseForm<T extends Record<string, any>>(
     form: Awaited<ReturnType<typeof readMultipartFormData>>,
-    fieldsNeedToSplit: string[] = []
+    fieldsNeedToSplit: string[] = [],
 ): Promise<T> {
     const data: Partial<T> = {};
 

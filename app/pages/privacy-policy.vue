@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: false })
+definePageMeta({ layout: false });
 useHead({ title: "Bing2Go 隱私政策（Privacy Policy）" });
 </script>
 

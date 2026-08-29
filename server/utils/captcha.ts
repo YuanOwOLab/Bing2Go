@@ -40,7 +40,7 @@ export async function createCaptchaImage(captchaText: string) {
                     `<svg width="${width}" height="${height}">
                         <text x="50%" y="50%" font-size="${fontSize}" text-anchor="middle"
                          fill="black" dy=".35em" font-family="monospace">${captchaText}</text>
-                    </svg>`
+                    </svg>`,
                 ),
                 top: 0,
                 left: 0,

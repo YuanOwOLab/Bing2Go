@@ -62,9 +62,19 @@ describe("reviews.service", () => {
         mocks.aggregate.mockReturnValueOnce([{ _id: "507f1f77bcf86cd799439011", averageRating: 4 }]);
         restaurantMocks.findByIdAndUpdate.mockResolvedValue(null);
 
-        const result = await createReview({ restaurant: "507f1f77bcf86cd799439011", user: "u1", rating: 4, content: "Nice" });
+        const result = await createReview({
+            restaurant: "507f1f77bcf86cd799439011",
+            user: "u1",
+            rating: 4,
+            content: "Nice",
+        });
 
-        expect(mocks.create).toHaveBeenCalledWith({ restaurant: "507f1f77bcf86cd799439011", user: "u1", rating: 4, content: "Nice" });
+        expect(mocks.create).toHaveBeenCalledWith({
+            restaurant: "507f1f77bcf86cd799439011",
+            user: "u1",
+            rating: 4,
+            content: "Nice",
+        });
         expect(result).toStrictEqual(reviewDoc);
     });
 });

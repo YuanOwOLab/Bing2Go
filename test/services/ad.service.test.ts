@@ -5,6 +5,12 @@ import { createChainedQueryMock } from "@mocks/query.mock";
 import { beforeEach, describe, expect, it } from "vitest";
 
 // ---------------------------------------------------------------------
+// Import 要測試的功能
+// ---------------------------------------------------------------------
+
+import { createAd, deleteAd, getAdById, getAllAds, getRandomAd, updateAd } from "$services/ad.service";
+
+// ---------------------------------------------------------------------
 // 在這裡設定區域的 mocks 或測試前置條件
 // ---------------------------------------------------------------------
 
@@ -15,12 +21,6 @@ beforeEach(() => {
     mocks.findByIdAndUpdate.mockReset();
     mocks.findByIdAndDelete.mockReset();
 });
-
-// ---------------------------------------------------------------------
-// Import 要測試的功能
-// ---------------------------------------------------------------------
-
-import { createAd, deleteAd, getAdById, getAllAds, getRandomAd, updateAd } from "$services/ad.service";
 
 // ---------------------------------------------------------------------
 // 測試開始

@@ -30,7 +30,7 @@ export async function getChatMessagesByOrderId(
     options: QueryPaginationOptions & {
         after?: Date;
         before?: Date;
-    }
+    },
 ) {
     const limit = options.limit ?? 20;
     const skip = options.skip ?? 0;

@@ -185,7 +185,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // 查詢訂單
-    let orders = await getAvailableOrdersForDeliveryPerson(
+    const orders = await getAvailableOrdersForDeliveryPerson(
         lat ? Number(lat) : undefined,
         lon ? Number(lon) : undefined,
         keyword ? String(keyword) : undefined,
@@ -194,7 +194,7 @@ export default defineEventHandler(async (event) => {
             skip,
             sortBy: sortBy as "createdAt" | "deliveryFee" | "arriveTime" | "distance",
             order: order === "asc" ? "asc" : "desc",
-        }
+        },
     );
 
     return {

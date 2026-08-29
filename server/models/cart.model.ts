@@ -38,7 +38,7 @@ const cartItemSchema = new Schema<CartItemSubdocument>(
         id: false, // 不要自動產生虛擬的 id 欄位
         toJSON: { virtuals: true },
         toObject: { virtuals: true },
-    }
+    },
 );
 
 cartItemSchema.virtual("restaurant", {
@@ -72,7 +72,7 @@ const cartSchema = new Schema<CartDocument>(
             default: "open",
         },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

@@ -5,6 +5,12 @@ import { authUtilsMocks, mockAuthUtils } from "@mocks/utils/auth.mock";
 import { describe, expect, it } from "vitest";
 
 // ---------------------------------------------------------------------
+// Import 要測試的功能
+// ---------------------------------------------------------------------
+
+import { banUser, changeUserPassword, loginUser, registerUser, unbanUser } from "$services/auth.service";
+
+// ---------------------------------------------------------------------
 // 在這裡設定區域的 mocks 或測試前置條件
 // ---------------------------------------------------------------------
 
@@ -12,12 +18,6 @@ mockUserService();
 mockAuthUtils();
 
 const signJwtMock = authUtilsMocks.signJwt;
-
-// ---------------------------------------------------------------------
-// Import 要測試的功能
-// ---------------------------------------------------------------------
-
-import { banUser, changeUserPassword, loginUser, registerUser, unbanUser } from "$services/auth.service";
 
 // ---------------------------------------------------------------------
 // 測試開始

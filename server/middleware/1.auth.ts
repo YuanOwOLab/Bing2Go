@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // 解析 Bearer 格式
-    let m = authHeader.match(/^Bearer\s+((?:\.?[0-9A-Za-z\-_=]+){3})$/);
+    const m = authHeader.match(/^Bearer\s+((?:\.?[0-9A-Za-z\-_=]+){3})$/);
     if (!m || !m[1]) {
         throw createError({
             statusCode: 401,

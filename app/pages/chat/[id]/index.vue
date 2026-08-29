@@ -2,16 +2,22 @@
     <v-container class="chat-container">
         <v-row justify="center" class="fill-height">
             <v-col cols="12" md="8" class="d-flex flex-column h-100">
-                <v-btn @click="goBack" color="secondary" class="mb-4 align-self-start">返回上一頁</v-btn>
-                <div class="messages flex-grow-1" ref="messagesContainer">
+                <v-btn color="secondary" class="mb-4 align-self-start" @click="goBack">返回上一頁</v-btn>
+                <div ref="messagesContainer" class="messages flex-grow-1">
                     <div
                         v-for="msg in messages"
                         :key="msg.id"
                         :class="['message', msg.senderRole === userStore.currentRole ? 'left' : 'right']"
                     >
-                        <p class="message-header" :class="msg.senderRole === userStore.currentRole ? 'align-left' : 'align-right'">
-                            <span class="sender-role" :class="msg.senderRole === userStore.currentRole ? 'left' : 'right'">
-                                {{ msg.senderRole === 'customer' ? '顧客' : '外送員' }}
+                        <p
+                            class="message-header"
+                            :class="msg.senderRole === userStore.currentRole ? 'align-left' : 'align-right'"
+                        >
+                            <span
+                                class="sender-role"
+                                :class="msg.senderRole === userStore.currentRole ? 'left' : 'right'"
+                            >
+                                {{ msg.senderRole === "customer" ? "顧客" : "外送員" }}
                             </span>
                             <strong class="sender-name">{{ getSenderName(msg) }}</strong>
                             <span class="timestamp">{{ formatTimestamp(msg.timestamp) }}</span>
@@ -28,17 +34,162 @@
                         variant="solo"
                         prepend-inner-icon="mdi-message-text-outline"
                         clearable
-                        style="max-width: 100%;"
+                        style="max-width: 100%"
                         @keydown.enter.prevent="handleSend"
                         @compositionstart="isComposing = true"
                         @compositionend="isComposing = false"
-                    ></v-combobox>
+                    />
                     <v-btn color="primary" class="send-button" @click="handleSend">送出</v-btn>
                 </div>
             </v-col>
         </v-row>
     </v-container>
 </template>
+
+<script setup lang="ts">
+import { useChat } from "@composable/useChat";
+import { useNotificationStore } from "@stores/notification";
+import { useUserStore } from "@stores/user";
+
+const router = useRouter();
+const route = useRoute();
+const orderId = route.params.id as string;
+const userStore = useUserStore();
+const notificationStore = useNotificationStore();
+
+// 清除該訂單的所有通知（訊息與狀態）
+const clearNotification = () => {
+    notificationStore.clearAll(orderId);
+};
+
+onMounted(() => {
+    clearNotification();
+});
+
+// 監聽通知狀態，若在頁面中收到通知（訊息或狀態更新）則立即清除
+watch(
+    () => notificationStore.getNotification(orderId),
+    (n) => {
+        // 增加路由判斷，避免 keep-alive 導致在其他頁面時誤清除通知
+        if ((n.hasMessage || n.hasStatusUpdate) && router.currentRoute.value.path.includes(`/chat/${orderId}`)) {
+            clearNotification();
+        }
+    },
+    { deep: true },
+);
+
+const { data: orderData } = await useFetch(`/api/orders/${orderId}`, {
+    transform: (response: any) => response.data,
+    headers: { Authorization: `Bearer ${userStore.token}` },
+});
+
+const customer = computed(() => orderData.value?.user);
+
+interface ChatPayload {
+    id: string; // 訊息 ID
+    sender: string; // 使用者 ID
+    senderRole: "customer" | "delivery"; // 角色
+    content: string; // 訊息內容
+    timestamp?: Date | string; // 訊息時間戳
+}
+
+// 格式化時間戳
+function formatTimestamp(timestamp: Date | string | undefined): string {
+    if (!timestamp) return "";
+    const date = typeof timestamp === "string" ? new Date(timestamp) : timestamp;
+    return date.toLocaleTimeString();
+}
+
+// 根據訊息的 senderRole 取得對應的使用者名稱
+function getSenderName(msg: ChatPayload): string {
+    if (!msg) return "未知使用者";
+    if (msg.senderRole === "customer") {
+        return customer.value?.name || "未知使用者";
+    } else if (msg.senderRole === "delivery" && orderData.value?.deliveryPerson) {
+        return orderData.value.deliveryPerson.name;
+    }
+    return "未知使用者";
+}
+
+// 聊天訊息列表
+const messages = ref<ChatPayload[]>([]);
+
+const { data: history } = await useFetch(`/api/orders/${orderId}/chats`, {
+    transform: (response: any) => response.data,
+    headers: { Authorization: `Bearer ${userStore.token}` },
+});
+
+messages.value = history.value
+    .map((msg: any) => ({
+        id: msg._id,
+        sender: msg.sender._id,
+        senderRole: msg.senderRole,
+        content: msg.content,
+        timestamp: msg.timestamp,
+    }))
+    .reverse();
+
+// 建立聊天室連線
+const { send, disconnect } = useChat(orderId, messages);
+
+// 輸入訊息的綁定變數
+const newMessage = ref("");
+
+// 跟踪是否正在組合輸入（中文輸入）
+const isComposing = ref(false);
+
+// 加入容器 ref 以控制捲動
+const messagesContainer = ref<HTMLElement | null>(null);
+
+// 捲到最底部
+function scrollToBottom() {
+    nextTick(() => {
+        if (messagesContainer.value) {
+            messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+        }
+    });
+}
+
+// 載入後捲到底
+onMounted(() => {
+    scrollToBottom();
+});
+
+// 若頁面被 keep-alive，啟用時也捲到底，並清除通知
+onActivated(() => {
+    clearNotification();
+    scrollToBottom();
+});
+
+// 訊息數量改變（歷史載入、收到新訊息）時捲到底
+watch(
+    () => messages.value.length,
+    () => {
+        scrollToBottom();
+    },
+);
+
+// 發送訊息
+function handleSend() {
+    if (isComposing.value) return;
+    const msg = newMessage.value.trim();
+    if (msg) {
+        send(msg);
+        newMessage.value = "";
+        scrollToBottom();
+    }
+}
+
+// 返回上一頁
+function goBack() {
+    router.back();
+}
+
+// 離開頁面時斷開連線
+onUnmounted(() => {
+    disconnect();
+});
+</script>
 
 <style scoped>
 .chat-container {
@@ -174,140 +325,3 @@
     }
 }
 </style>
-
-<script setup lang="ts">
-import { useChat } from "@composable/useChat";
-import { useNotificationStore } from "@stores/notification";
-import { useUserStore } from "@stores/user";
-
-const router = useRouter();
-const route = useRoute();
-const orderId = route.params.id as string;
-const userStore = useUserStore();
-const notificationStore = useNotificationStore();
-
-// 清除該訂單的所有通知（訊息與狀態）
-const clearNotification = () => {
-    notificationStore.clearAll(orderId);
-};
-
-onMounted(() => {
-    clearNotification();
-});
-
-// 監聽通知狀態，若在頁面中收到通知（訊息或狀態更新）則立即清除
-watch(() => notificationStore.getNotification(orderId), (n) => {
-    // 增加路由判斷，避免 keep-alive 導致在其他頁面時誤清除通知
-    if ((n.hasMessage || n.hasStatusUpdate) && router.currentRoute.value.path.includes(`/chat/${orderId}`)) {
-        clearNotification();
-    }
-}, { deep: true });
-
-const { data: orderData } = await useFetch(`/api/orders/${orderId}`, {
-    transform: (response: any) => response.data,
-    headers: { Authorization: `Bearer ${userStore.token}` },
-});
-
-const customer = computed(() => orderData.value?.user);
-
-interface ChatPayload {
-    id: string; // 訊息 ID
-    sender: string; // 使用者 ID
-    senderRole: "customer" | "delivery"; // 角色
-    content: string; // 訊息內容
-    timestamp?: Date | string; // 訊息時間戳
-}
-
-// 格式化時間戳
-function formatTimestamp(timestamp: Date | string | undefined): string {
-    if (!timestamp) return "";
-    const date = typeof timestamp === "string" ? new Date(timestamp) : timestamp;
-    return date.toLocaleTimeString();
-}
-
-// 根據訊息的 senderRole 取得對應的使用者名稱
-function getSenderName(msg: ChatPayload): string {
-    if (!msg) return "未知使用者";
-    if (msg.senderRole === "customer") {
-        return customer.value?.name || "未知使用者";
-    } else if (msg.senderRole === "delivery" && orderData.value?.deliveryPerson) {
-        return orderData.value.deliveryPerson.name;
-    }
-    return "未知使用者";
-}
-
-// 聊天訊息列表
-const messages = ref<ChatPayload[]>([]);
-
-const { data: history } = await useFetch(`/api/orders/${orderId}/chats`, {
-    transform: (response: any) => response.data,
-    headers: { Authorization: `Bearer ${userStore.token}` },
-});
-
-messages.value = history.value.map((msg: any) => ({
-    id: msg._id,
-    sender: msg.sender._id,
-    senderRole: msg.senderRole,
-    content: msg.content,
-    timestamp: msg.timestamp,
-})).reverse();
-
-// 建立聊天室連線
-const { send, disconnect } = useChat(orderId, messages);
-
-// 輸入訊息的綁定變數
-const newMessage = ref("");
-
-// 跟踪是否正在組合輸入（中文輸入）
-const isComposing = ref(false);
-
-// 加入容器 ref 以控制捲動
-const messagesContainer = ref<HTMLElement | null>(null);
-
-// 捲到最底部
-function scrollToBottom() {
-        nextTick(() => {
-            if (messagesContainer.value) {
-                messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
-            }
-        });
-}
-
-// 載入後捲到底
-onMounted(() => {
-    scrollToBottom();
-});
-
-// 若頁面被 keep-alive，啟用時也捲到底，並清除通知
-onActivated(() => {
-    clearNotification();
-    scrollToBottom();
-});
-
-// 訊息數量改變（歷史載入、收到新訊息）時捲到底
-watch(() => messages.value.length, () => {
-    scrollToBottom();
-});
-
-// 發送訊息
-function handleSend() {
-    if (isComposing.value) return;
-    const msg = newMessage.value.trim();
-    if (msg) {
-        send(msg);
-        newMessage.value = "";
-        scrollToBottom();
-    }
-}
-
-// 返回上一頁
-function goBack() {
-    router.back();
-}
-
-// 離開頁面時斷開連線
-onUnmounted(() => {
-    disconnect();
-});
-</script>
-

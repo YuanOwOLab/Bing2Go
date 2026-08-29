@@ -13,6 +13,6 @@ export function cleanObject<T extends Record<string, any>>(obj: T): Partial<T> {
             if (typeof v === "string" && v.trim() === "") return false;
             if (Array.isArray(v) && v.length === 0) return false;
             return true;
-        })
+        }),
     ) as Partial<T>;
 }

@@ -17,7 +17,7 @@ const geoCacheSchema = new mongoose.Schema<GeoCacheDocument>(
         lat: Number,
         lon: Number,
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

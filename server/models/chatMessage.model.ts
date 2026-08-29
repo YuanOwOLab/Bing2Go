@@ -33,7 +33,7 @@ const chatMessageSchema = new Schema<ChatMessageDocument>(
         content: { type: String, required: true },
         timestamp: { type: Date, default: Date.now },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

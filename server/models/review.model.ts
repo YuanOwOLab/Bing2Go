@@ -37,7 +37,7 @@ const reviewSchema = new Schema<ReviewDocument>(
             trim: true,
         },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

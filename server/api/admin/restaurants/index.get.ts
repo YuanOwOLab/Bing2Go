@@ -77,7 +77,7 @@ export default defineEventHandler(async (event) => {
     const skip = parseInteger(query.skip, 0, 0);
 
     // Admin endpoint 回傳所有餐廳（包含下架）
-    let restaurants = await searchRestaurants(search, { limit, skip, activeOnly: false });
+    const restaurants = await searchRestaurants(search, { limit, skip, activeOnly: false });
 
     return {
         success: true,

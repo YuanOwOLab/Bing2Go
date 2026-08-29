@@ -5,7 +5,7 @@ import { vi } from "vitest";
 /**
  * 建立模擬 Mongoose Document 的 mock 物件
  * 支援 populate, save, toObject 方法
- * 
+ *
  * @param data 文件的初始資料
  * @param virtuals 虛擬屬性
  */

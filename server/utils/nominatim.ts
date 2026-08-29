@@ -67,8 +67,8 @@ export async function geocodeAddress(address: string) {
     // 1. 先查是否為校內樓館
     const ntouLocation = await NTOULocation.findOne({ name: address });
     if (ntouLocation) {
-        let lat = parseFloat(ntouLocation.lat);
-        let lon = parseFloat(ntouLocation.lon);
+        const lat = parseFloat(ntouLocation.lat);
+        const lon = parseFloat(ntouLocation.lon);
         console.log("Geocode NTOULocation hit for address:", address);
         console.log("Found coordinates:", { lat, lon });
         return { lat, lon };
@@ -82,8 +82,8 @@ export async function geocodeAddress(address: string) {
     const qWithoutKeelong = q.replace(/^基隆市\s*/, "");
     const keelongEntry = await KeelongAddressMap.findOne({ normalizedAddress: qWithoutKeelong });
     if (keelongEntry) {
-        let lat = parseFloat(keelongEntry.lat);
-        let lon = parseFloat(keelongEntry.lon);
+        const lat = parseFloat(keelongEntry.lat);
+        const lon = parseFloat(keelongEntry.lon);
         console.log("Geocode KeelongAddressMap hit for address:", qWithoutKeelong);
         console.log("Found coordinates:", { lat, lon });
         return { lat, lon };

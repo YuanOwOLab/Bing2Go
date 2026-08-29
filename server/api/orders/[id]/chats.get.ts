@@ -95,10 +95,10 @@ export default defineEventHandler(async (event) => {
     const DEFAULT_SKIP = 0;
     const MIN_SKIP = 0;
 
-    let limit = parseInt(query.limit as string) || DEFAULT_LIMIT;
-    let skip = parseInt(query.skip as string) || DEFAULT_SKIP;
-    let after = query.after ? new Date(query.after as string) : null;
-    let before = query.before ? new Date(query.before as string) : null;
+    const limit = parseInt(query.limit as string) || DEFAULT_LIMIT;
+    const skip = parseInt(query.skip as string) || DEFAULT_SKIP;
+    const after = query.after ? new Date(query.after as string) : null;
+    const before = query.before ? new Date(query.before as string) : null;
 
     const chatMessages = await getChatMessagesByOrderId(orderId, {
         limit: Math.min(Math.max(limit, MIN_LIMIT), MAX_LIMIT),

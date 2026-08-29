@@ -21,7 +21,7 @@ const adSchema = new Schema<AdDocument>(
         text: { type: String, required: false },
         isActive: { type: Boolean, default: true },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
 // --------------------

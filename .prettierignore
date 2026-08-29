@@ -1,0 +1,8 @@
+.nuxt
+.output
+node_modules
+coverage
+public/sounds
+public/favicon.ico
+pnpm-lock.yaml
+pnpm-workspace.yaml
